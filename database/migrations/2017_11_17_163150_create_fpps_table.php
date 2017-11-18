@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Fpp extends Migration
+class CreateFppsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class Fpp extends Migration
      */
     public function up()
     {
-        Schema::create('fpp', function (Blueprint $table) {
+        Schema::create('fpps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->string('tgl_mulai');
-            $table->string('tgl_selesai');
+            $table->date('tgl_mulai');
+            $table->date('tgl_selesai');
             $table->integer('status');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ class Fpp extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fpp');
+        Schema::dropIfExists('fpps');
     }
 }

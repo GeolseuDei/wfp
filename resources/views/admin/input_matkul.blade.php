@@ -5,83 +5,79 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>Input Mata Kuliah</h2>
-				<ul class="nav navbar-right panel_toolbox">
-					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-					</li>
-					
-				</ul>
+				
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
 				<br />
-				<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+				<form id="form_input_matkul" action="#" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kode Mata Kuliah <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+							<input type="text" id="kode-matkul" name="kode_matkul" required="required" class="form-control col-md-7 col-xs-12">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nama Mata Kuliah <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+							<input type="text" id="nama-matkul" name="nama_matkul" required="required" class="form-control col-md-7 col-xs-12">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Hari</label>
+						<label for="hari" class="control-label col-md-3 col-sm-3 col-xs-12">Hari <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+							<input id="hari" required="" class="form-control col-md-7 col-xs-12" type="text" name="hari">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Jam Mulai</label>
+						<label for="jam-mulai" class="control-label col-md-3 col-sm-3 col-xs-12">Jam Mulai <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="jam_mulai">
+							<input id="jam-mulai" required="" class="form-control col-md-7 col-xs-12" type="text" name="jam_mulai">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Jam Selesai</label>
+						<label for="jam-selesai" class="control-label col-md-3 col-sm-3 col-xs-12">Jam Selesai <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="jam_selesai">
+							<input id="jam-selesai" required="" class="form-control col-md-7 col-xs-12" type="text" name="jam_selesai">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">SKS</label>
+						<label for="sks" class="control-label col-md-3 col-sm-3 col-xs-12">SKS <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="middle-name" class="form-control col-md-7 col-xs-12" type="number" name="middle-name">
+							<input id="sks" required="" class="form-control col-md-7 col-xs-12" type="number" name="sks">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">KP</label>
+						<label for="kp" class="control-label col-md-3 col-sm-3 col-xs-12">KP <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+							<input id="kp" required="" class="form-control col-md-7 col-xs-12" type="text" name="kp">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Dosen Pengajar</label>
+						<label for="dosen-pengajar" class="control-label col-md-3 col-sm-3 col-xs-12">Dosen Pengajar <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<textarea class="form-control" rows="3" id="dosen_pengajar" name="dosen_pengajar"></textarea>
+							<textarea class="form-control" rows="3" required="" id="dosen_pengajar" name="dosen_pengajar"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Kapasitas</label>
+						<label for="kapasitas" class="control-label col-md-3 col-sm-3 col-xs-12">Kapasitas <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="middle-name" class="form-control col-md-7 col-xs-12" type="number" name="middle-name">
+							<input id="kapasitas" required="" class="form-control col-md-7 col-xs-12" type="number" name="kapasitas">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Ruangan</label>
+						<label for="ruangan" class="control-label col-md-3 col-sm-3 col-xs-12">Ruangan <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+							<input id="ruangan" required="" class="form-control col-md-7 col-xs-12" type="text" name="ruangan">
 						</div>
 					</div>
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-							<button class="btn btn-primary" type="button">Cancel</button>
+							<button class="btn btn-primary" type="button" onclick="window.location='{{ url("admin_page") }}'">Cancel</button>
 							<button class="btn btn-primary" type="reset">Reset</button>
 							<button type="submit" class="btn btn-success">Submit</button>
 						</div>

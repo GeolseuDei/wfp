@@ -12,22 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('templates.masteradmin');
+    return view('welcome');
 });
 
-Route::get('admin_page', function () {
-    return view('admin.index');
+Route::get('edit_matkul', function () {
+    return view('admin.edit_matkul');
 });
 
-Route::get('fpp1', function () {
-    return view('admin.fpp1');
-});
-Route::get('fpp2', function () {
-    return view('admin.fpp2');
-});
-Route::get('kasus_khusus', function () {
-    return view('admin.kasus_khusus');
-});
+Route::resource('admin_page', 'AdminHomeController');
+
+Route::resource('fpp1', 'FPP1Controller');
+
+Route::resource('fpp2', 'FPP2Controller');
+
+Route::resource('kasus_khusus', 'KasusKhususController');
+
 Route::get('input_matkul', function () {
     return view('admin.input_matkul');
 });

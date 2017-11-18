@@ -1,7 +1,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <strong>© Created By Tommy Rachmadiono</strong> 
           </div>
           <div class="clearfix"></div>
         </footer>
