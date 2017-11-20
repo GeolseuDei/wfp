@@ -14,7 +14,7 @@ class FPP1Controller extends Controller
      */
     public function index()
     {
-        $fpps = fpp::all()->where('status', 1);
+        $fpps = fpp::all()->where('id', 1);
         
         return view('admin.fpp1', compact('fpps'));
     }
@@ -72,9 +72,9 @@ class FPP1Controller extends Controller
      */
     public function edit($id)
     {
-        $fpps = fpp::find($id);
+        //$fpps = fpp::find($id);
         
-        return view('admin.fpp2', compact('fpp','id'));
+        //return view('admin.fpp1', compact('fpps','id'));
     }
 
     /**

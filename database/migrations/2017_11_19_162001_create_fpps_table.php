@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Dosen extends Migration
+class CreateFppsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class Dosen extends Migration
      */
     public function up()
     {
-        Schema::create('dosen', function (Blueprint $table) {
+        Schema::create('fpps', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('noinduk');
             $table->string('nama');
+            $table->dateTime('tgl_mulai');
+            $table->dateTime('tgl_selesai');
+            $table->boolean('status');
+            $table->string('semester');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +31,6 @@ class Dosen extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dosen');
+        Schema::dropIfExists('fpps');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFppsTable extends Migration
+class CreateMatkulDiambilsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateFppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fpps', function (Blueprint $table) {
+        Schema::create('matkul_diambils', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama');
-            $table->date('tgl_mulai');
-            $table->date('tgl_selesai');
-            $table->integer('status');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateFppsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fpps');
+        Schema::dropIfExists('matkul_diambils');
     }
 }

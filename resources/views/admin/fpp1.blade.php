@@ -14,7 +14,8 @@
         @foreach($fpps as $post)
         
         <!-- DATA ADA, FORM UPDATE -->
-        <form method="POST" action="{{action('FPP1Controller@update', $post['id'])}}"  data-parsley-validate class="form-horizontal form-label-left">
+        <form method="POST" 
+        action="{{action('FPP1Controller@update', $post['id'])}}"  data-parsley-validate class="form-horizontal form-label-left">
 
           <div class="form-group">
             {{csrf_field()}}
