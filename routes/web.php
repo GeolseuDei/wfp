@@ -20,12 +20,13 @@ Route::get('edit_matkul', function () {
 });
 
 Route::resource('admin_page', 'AdminHomeController');
-
 Route::resource('fpp1', 'FPP1Controller');
-
 Route::resource('fpp2', 'FPP2Controller');
-
 Route::resource('kasus_khusus', 'KasusKhususController');
+
+Route::get('dosen_page', function() {
+	return view('dosen.index');
+});
 
 Route::get('input_matkul', function () {
     return view('admin.input_matkul');
