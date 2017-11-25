@@ -10,7 +10,8 @@
 			</div>
 			<div class="x_content">
 				<br />
-				<form id="form_input_matkul" action="{{url('matkul')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+
+				<form id="form_input_matkul" action="{{url('edit_matkul')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 					{{csrf_field()}}
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kode Mata Kuliah <span class="required">*</span>
@@ -35,24 +36,23 @@
 					<div class="form-group">
 						<label for="jurusan" class="control-label col-md-3 col-sm-3 col-xs-12">Jurusan <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<div class="dropdown">
-								<button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
-									Jurusan
-									<span class="caret"></span></button>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>
-									</ul>
-								</div>
+							<div class="form-group">
+								<select class="form-control" name="jurusan">
+									<option value="">Pilih Jurusan</option>
+									@if($jurusans->count()>0)
+									@foreach($jurusans as $post)
+										<option value="{{$post['id']}}">{{ $post['nama'] }}</option>
+									@endforeach
+									@endif
+								</select>
 							</div>
 						</div>
+					</div>
 					<div class="form-group">
 						<label for="status" class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<label class="radio-inline"><input type="radio" name="optradio" checked="checked">Aktif</label>
-							<label class="radio-inline"><input type="radio" name="optradio">Tidak Aktif</label>
+							<label class="radio-inline"><input type="radio" name="optradio" value="1" checked="checked">Aktif</label>
+							<label class="radio-inline"><input type="radio" name="optradio" value="0">Tidak Aktif</label>
 						</div>
 					</div>
 					<div class="form-group">

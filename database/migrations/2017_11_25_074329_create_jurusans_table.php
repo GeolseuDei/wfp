@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMatkulsTable extends Migration
+class CreateJurusansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateMatkulsTable extends Migration
      */
     public function up()
     {
-        Schema::create('matkuls', function (Blueprint $table) {
+        Schema::create('jurusans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode');
             $table->string('nama');
-            $table->integer('sks');
-            $table->integer('id_jurusan')->unsigned();
-            $table->boolean('status');
-            $table->integer('semester');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateMatkulsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matkuls');
+        Schema::dropIfExists('jurusans');
     }
 }

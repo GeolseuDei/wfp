@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Matkul;
+use App\jurusan;
 
 class MatkulController extends Controller
 {
@@ -15,7 +16,19 @@ class MatkulController extends Controller
     public function index()
     {
         $matkuls = Matkul::all();
-        
+        $jurusans = jurusan::all();
+        return view('admin.input_matkul', compact('matkuls','jurusans'));
+    }
+
+    public function loadJurusanInput()
+    {
+        $jurusans = jurusan::all();
+        return view('admin.input_matkul', compact('jurusans'));
+    }
+
+    public function loadJurusanEdit()
+    {
+        $matkuls = Matkul::all();
         return view('admin.edit_matkul', compact('matkuls'));
     }
 
@@ -41,10 +54,10 @@ class MatkulController extends Controller
           'kode' => $request->get('kode_matkul'),
           'nama' => $request->get('nama_matkul'),
           'sks' => $request->get('sks'),
-          'jurusan' => $request->get('jurusan'),
-          'status' => $request->get('status'),
+          'id_jurusan' => $request->get('jurusan'),
+          'status' => $request->get('optradio'),
           'semester' => $request->get('semester'),
-        ]);
+      ]);
 
         $matkuls->save();
         return redirect('/admin_page');
@@ -70,7 +83,8 @@ class MatkulController extends Controller
     public function edit($id)
     {
         $matkuls = Matkul::find($id);
-        return view('admin.update_matkul',compact('matkuls','id'));
+        $jurusans = jurusan::all();
+        return view('admin.update_matkul',compact('jurusans','matkuls','id'));
     }
 
     /**
@@ -82,7 +96,16 @@ class MatkulController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $matkuls = Matkul::find($id);
+        $matkuls->kode = $request->get('kode_matkul');
+        $matkuls->nama = $request->get('nama_matkul');
+        $matkuls->sks = $request->get('sks');
+        $matkuls->id_jurusan = $request->get('jurusan');
+        $matkuls->status = $request->get('optradio');
+        $matkuls->semester = $request->get('semester');
+        $matkuls->save();
+        
+        return redirect('/list_matkul');
     }
 
     /**
@@ -93,6 +116,9 @@ class MatkulController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $matkuls = Matkul::find($id);
+        $matkuls->delete();
+        
+        return redirect('/list_matkul');
     }
 }
