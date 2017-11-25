@@ -22,7 +22,12 @@ Route::resource('kasus_khusus', 'KasusKhususController');
 Route::resource('edit_matkul', 'MatkulController');
 Route::get('/input_matkul', 'MatkulController@loadJurusanInput');
 Route::get('/list_matkul', 'MatkulController@loadJurusanEdit');
-
+Route::get('master_dosen', function() {
+	return view('admin.master_dosen');
+});
+Route::get('master_mahasiswa', function() {
+	return view('admin.master_mhs');
+});
 
 Route::get('dosen_page', function() {
 	return view('dosen.index');
