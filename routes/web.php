@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::resource('admin_page', 'AdminHomeController');
@@ -30,4 +30,7 @@ Route::get('dosen_page', function() {
 
 Route::get('mahasiswa', function () {
     return view('mahasiswa.index');
+});
+Route::get('profil_mahasiswa', function() {
+	return view('mahasiswa.profil');
 });

@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-	<title>Perwalian Mahasiswa</title>
-    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
-</head>
-<body>
-	<br><br>
-	@yield('content')
+@include('templates.partials_mhs.head')
+
+<body class="nav-md">
+	<div class="container body">
+		<div class="main_container">
+			<div class="col-md-3 left_col">
+				<div class="left_col scroll-view">
+					<div class="navbar nav_title" style="border: 0;">
+						<a href="mahasiswa" class="site_title"><i class="fa fa-paw"></i> <span>Mahasiswa Page</span></a>
+					</div>
+
+					<!-- Sidebar Menu -->
+					@include('templates.partials_mhs.sidebar_menu')
+
+				</div>
+			</div>
+
+			<!-- Top Menu -->
+			@include('templates.partials_mhs.top_nav')
+
+			<!-- page content -->
+			<div class="right_col" role="main">
+				@yield('content')
+			</div>
+			<!-- /page content -->
+
+			<!-- FOOTER -->
+			@include('templates.partials_mhs.footer') 
+		</div>
+	</div>
+
+	<!-- SCRIPT -->
+	@include('templates.partials_mhs.scripts')
+
 </body>
 </html>
