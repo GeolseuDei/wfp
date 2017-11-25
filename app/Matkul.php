@@ -10,4 +10,6 @@ class Matkul extends Model
 	{
 		return $this->hasMany('App\Kelas');
 	}
+
+	protected $fillable = ['kode','nama', 'sks', 'jurusan', 'status', 'semester'];
 }

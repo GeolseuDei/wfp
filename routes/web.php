@@ -23,6 +23,7 @@ Route::resource('admin_page', 'AdminHomeController');
 Route::resource('fpp1', 'FPP1Controller');
 Route::resource('fpp2', 'FPP2Controller');
 Route::resource('kasus_khusus', 'KasusKhususController');
+Route::resource('matkul', 'MatkulController');
 
 Route::get('dosen_page', function() {
 	return view('dosen.index');

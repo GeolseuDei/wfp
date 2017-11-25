@@ -29,7 +29,7 @@
         <li><a><i class="fa fa-edit"></i> Mata Kuliah <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="input_matkul">Input Data Mata Kuliah</a></li>
-            <li><a href="edit_matkul">Ubah/Hapus Data Mata Kuliah</a></li>
+            <li><a href="matkul">Ubah/Hapus Data Mata Kuliah</a></li>
           </ul>
         </li>
       </ul>

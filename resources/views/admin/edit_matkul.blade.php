@@ -7,33 +7,31 @@
 			<tr>
 				<th style="text-align: center;">Kode Matkul</th>
 				<th style="text-align: center;">Nama Matkul</th>
-				<th style="text-align: center;">Hari</th>
-				<th style="text-align: center;">Jam</th>
 				<th style="text-align: center;">SKS</th>
-				<th style="text-align: center;">KP</th>
-				<th style="text-align: center;">Dosen Pengajar</th>
-				<th style="text-align: center;">Kapasitas</th>
-				<th style="text-align: center;">Ruangan</th>
+				<th style="text-align: center;">JURUSAN</th>
+				<th style="text-align: center;">STATUS</th>
+				<th style="text-align: center;">SEMESTER</th>
 				<th style="text-align: center;">Edit</th>
 				<th style="text-align: center;">Delete</th>
 			</tr>
 		</thead>
 		<tbody>
+			@if($matkuls->count()>0)
+			@foreach($matkuls as $post)
 			<tr>
-				<td>160714044</td>
-				<td>algoritma pemrograman</td>
-				<td>Senin</td>
-				<td>08.00 - 09.00</td>
-				<td>3</td>
-				<td>A</td>
-				<td>Siprianus Harry Hoedijono</td>
-				<td>30</td>
-				<td>TC 4.</td>
-				<td><a href="#" class="btn btn-warning">Edit</a></td>
+				<td>{{ $post['kode'] }}</td>
+				<td>{{ $post['nama'] }}</td>
+				<td>{{ $post['sks'] }}</td>
+				<td>{{ $post['jurusan'] }}</td>
+				<td>{{ $post['status'] }}</td>
+				<td>{{ $post['semester'] }}</td>
+				<td><a href="{{action('MatkulController@edit', $post['id'])}}" class="btn btn-warning">Edit</a></td>
 				<td>
 					<button class="btn btn-danger" type="submit" confirm="Delete Data?">Delete</button>
 				</td>
 			</tr>
+			@endforeach
+			@endif
 		</tbody>
 	</table>
 </div>
