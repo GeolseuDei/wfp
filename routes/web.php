@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('home');
 });
@@ -36,6 +38,9 @@ Route::get('dosen_page', function() {
 Route::get('mahasiswa', function () {
     return view('mahasiswa.index');
 });
+
 Route::get('profil_mahasiswa', function() {
 	return view('mahasiswa.profil');
 });
+
+//Route::get('/home', 'HomeController@index')->name('home');

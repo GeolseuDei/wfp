@@ -16,6 +16,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'm001',
         	'password' => bcrypt('123456'),
         	'status' => 'mahasiswa'
         	]
@@ -24,6 +25,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'm002',
         	'password' => bcrypt('123456'),
         	'status' => 'mahasiswa'
         	]
@@ -32,6 +34,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'm003',
         	'password' => bcrypt('123456'),
         	'status' => 'mahasiswa'
         	]
@@ -40,6 +43,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'm004',
         	'password' => bcrypt('123456'),
         	'status' => 'mahasiswa'
         	]
@@ -48,6 +52,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'm005',
         	'password' => bcrypt('123456'),
         	'status' => 'mahasiswa'
         	]
@@ -58,6 +63,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'd001',
         	'password' => bcrypt('123456'),
         	'status' => 'dosen'
         	]
@@ -66,6 +72,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'd002',
         	'password' => bcrypt('123456'),
         	'status' => 'dosen'
         	]
@@ -74,6 +81,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'd003',
         	'password' => bcrypt('123456'),
         	'status' => 'dosen'
         	]
@@ -82,6 +90,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'd004',
         	'password' => bcrypt('123456'),
         	'status' => 'dosen'
         	]
@@ -90,6 +99,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'd005',
         	'password' => bcrypt('123456'),
         	'status' => 'dosen'
         	]
@@ -100,6 +110,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'a001',
         	'password' => bcrypt('123456'),
         	'status' => 'admin'
         	]
@@ -108,6 +119,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'a002',
         	'password' => bcrypt('123456'),
         	'status' => 'admin'
         	]
@@ -116,6 +128,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'a003',
         	'password' => bcrypt('123456'),
         	'status' => 'admin'
         	]
@@ -124,6 +137,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'a004',
         	'password' => bcrypt('123456'),
         	'status' => 'admin'
         	]
@@ -132,6 +146,7 @@ class UsersTableSeeder extends Seeder
         	[
         	'name' => str_random(8),
         	'email' => str_random(10) . "@email.com",
+            'username' => 'a005',
         	'password' => bcrypt('123456'),
         	'status' => 'admin'
         	]

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\fpp;
+use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
 {
@@ -12,12 +13,25 @@ class AdminHomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $fpp1 = fpp::all()->where('status', 1);
-        $fpp2 = fpp::all()->where('status', 2);
-        $fpp3 = fpp::all()->where('status', 3);
-        return view('admin.index', compact('fpp1', 'fpp2', 'fpp3'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $fpp1 = fpp::all()->where('status', 1);
+            $fpp2 = fpp::all()->where('status', 2);
+            $fpp3 = fpp::all()->where('status', 3);
+            return view('admin.index', compact('fpp1', 'fpp2', 'fpp3'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
     }
 
     /**
