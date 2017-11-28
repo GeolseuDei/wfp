@@ -19,23 +19,23 @@
 			@if($matkuls->count()>0)
 			@foreach($matkuls as $post)
 			<tr>
-				<td>{{ $post['kode'] }}</td>
-				<td>{{ $post['nama'] }}</td>
-				<td>{{ $post['sks'] }}</td>
-				<td>{{ $post['id_jurusan'] }}</td>
+				<td>{{ $post->kode }}</td>
+				<td>{{ $post->nama }}</td>
+				<td>{{ $post->sks }}</td>
+				<td>{{ $post->nama_jurusan }}</td>
 				<td>
 					<?php
-					if( $post['status'] == "1" ){
+					if( $post->status == "1" ){
 						echo 'Aktif';
 					} else {
 						echo 'Tidak Aktif';
 					}
 					?>
 				</td>
-				<td>{{ $post['semester'] }}</td>
-				<td><a href="{{action('MatkulController@edit', $post['id'])}}" class="btn btn-warning">Edit</a></td>
+				<td>{{ $post->semester }}</td>
+				<td><a href="{{action('MatkulController@edit', $post->id)}}" class="btn btn-warning">Edit</a></td>
 				<td>
-					<form action="{{action('MatkulController@destroy', $post['id'])}}" method="post">
+					<form action="{{action('MatkulController@destroy', $post->id)}}" method="post">
 						{{csrf_field()}}
 						<input name="_method" type="hidden" value="DELETE">
 						<button class="btn btn-danger" type="submit" confirm="Delete Data?">Delete</button>

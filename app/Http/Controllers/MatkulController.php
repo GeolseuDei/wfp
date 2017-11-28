@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Matkul;
 use App\jurusan;
+use DB;
 
 class MatkulController extends Controller
 {
@@ -28,7 +29,10 @@ class MatkulController extends Controller
 
     public function loadJurusanEdit()
     {
-        $matkuls = Matkul::all();
+        $matkuls = DB::table('matkuls')
+            ->join('jurusans', 'matkuls.id_jurusan', '=', 'jurusans.id')
+            ->select('matkuls.*', 'jurusans.nama as nama_jurusan')
+            ->get();
         return view('admin.edit_matkul', compact('matkuls'));
     }
 
