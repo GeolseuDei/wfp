@@ -15,4 +15,8 @@ class Dosen extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    protected $fillable = [
+        'nik', 'nama','user_id',
+    ];
 }

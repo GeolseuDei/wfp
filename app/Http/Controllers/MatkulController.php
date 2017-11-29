@@ -88,6 +88,7 @@ class MatkulController extends Controller
     {
         $matkuls = Matkul::find($id);
         $jurusans = jurusan::all();
+        
         return view('admin.update_matkul',compact('jurusans','matkuls','id'));
     }
 

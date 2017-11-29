@@ -40,6 +40,7 @@
 							<div class="form-group">
 								<select class="form-control" name="jurusan">
 									@if($jurusans->count()>0)
+									<option value="{{$matkuls->id_jurusan}}">{{$jurusans[$matkuls->id_jurusan-1]->nama}}</option>
 									@foreach($jurusans as $post)
 										<option value="{{$post['id']}}">{{ $post['nama'] }}</option>
 									@endforeach

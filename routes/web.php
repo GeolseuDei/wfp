@@ -26,10 +26,8 @@ Route::resource('kasus_khusus', 'KasusKhususController');
 Route::resource('edit_matkul', 'MatkulController');
 Route::get('/input_matkul', 'MatkulController@loadJurusanInput');
 Route::get('/list_matkul', 'MatkulController@loadJurusanEdit');
-
-Route::get('master_dosen', function() {
-	return view('admin.master_dosen');
-})->middleware('auth')->where('status', '=' ,'admin');
+Route::resource('master_dosen', 'MasterDosenController');
+Route::get('input_dosen', 'MasterDosenController@create');
 
 // Route::get('master_dosen', function() {
 // 	$user = Auth::user();
