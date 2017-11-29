@@ -20,14 +20,20 @@ Route::get('/home', function () {
 	return view('home');
 });
 Route::resource('admin_page', 'AdminHomeController');
+
 Route::resource('fpp1', 'FPP1Controller');
 Route::resource('fpp2', 'FPP2Controller');
 Route::resource('kasus_khusus', 'KasusKhususController');
+
 Route::resource('edit_matkul', 'MatkulController');
 Route::get('/input_matkul', 'MatkulController@loadJurusanInput');
 Route::get('/list_matkul', 'MatkulController@loadJurusanEdit');
+
 Route::resource('master_dosen', 'MasterDosenController');
 Route::get('input_dosen', 'MasterDosenController@create');
+
+Route::resource('master_mahasiswa', 'MasterMahasiswaController');
+Route::get('input_mhs', 'MasterMahasiswaController@create');
 
 // Route::get('master_dosen', function() {
 // 	$user = Auth::user();
@@ -41,10 +47,6 @@ Route::get('input_dosen', 'MasterDosenController@create');
 //     }
 	
 // })->middleware('auth');
-
-Route::get('master_mahasiswa', function() {
-	return view('admin.master_mhs');
-})->middleware('auth');
 
 Route::get('dosen_page', function() {
 	return view('dosen.index');

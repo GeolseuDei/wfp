@@ -4,56 +4,42 @@
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
-				<h2>Input Dosen</h2>
+				<h2>Edit Dosen</h2>
 				
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
 				<br />
 
-				<form id="form_input_matkul" action="{{url('master_dosen')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+				<form id="form_input_matkul" action="{{action('MasterDosenController@update', $dosens->id)}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 					{{csrf_field()}}
-					@if($dosens->count()>0)
+					{{ method_field('PUT') }}
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">NIK <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							@if($dosens->count()+1<10)
-							<input type="text" id="nik" name="nik" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="d00{{$dosens->count()+1}}">
-							@elseif($dosens->count()+1<100)
-							<input type="text" id="nik" name="nik" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="d0{{$dosens->count()+1}}">
-							@else
-							<input type="text" id="nik" name="nik" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="d{{$dosens->count()+1}}">
-							@endif
+							<input type="text" id="nik" name="nik" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="{{ $dosens->nik }}">
 						</div>
 					</div>
-					@endif
-					<input type="hidden" value="{{$users->count()+1}}" name="iddosenbaru">
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nama Dosen <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" id="nama-namadosen" name="namadosen" required="required" class="form-control col-md-7 col-xs-12">
+							<input type="text" id="nama-namadosen" name="namadosen" required="required" class="form-control col-md-7 col-xs-12" value="{{ $dosens->nama }}">
 						</div>
 					</div>
 					<hr>
 					<div class="form-group">
 						<label for="email" class="control-label col-md-3 col-sm-3 col-xs-12">Email <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="email" required="" class="form-control col-md-7 col-xs-12" type="email" name="email">
+							<input id="email" required="" class="form-control col-md-7 col-xs-12" type="email" name="email" value="{{ $users->email }}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Username <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							@if($dosens->count()+1<10)
-							<input type="text" id="username" name="username" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="d00{{$dosens->count()+1}}">
-							@elseif($dosens->count()+1<100)
-							<input type="text" id="username" name="username" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="d0{{$dosens->count()+1}}">
-							@else
-							<input type="text" id="username" name="username" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="d{{$dosens->count()+1}}">
-							@endif
+							<input type="text" id="username" name="username" required="required" readonly="" class="form-control col-md-7 col-xs-12" value="{{ $users->username }}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -70,7 +56,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 							<button class="btn btn-primary" type="button" onclick="window.location='{{ url("master_dosen") }}'">Cancel</button>
 							<button class="btn btn-primary" type="reset">Reset</button>
-							<button type="submit" class="btn btn-success">Submit</button>
+							<button type="submit" class="btn btn-success">Update</button>
 						</div>
 					</div>
 

@@ -15,4 +15,6 @@ class Mahasiswa extends Model
 	{
 		return $this->hasMany('App\MatkulDiambil');
 	}
+
+	protected $fillable = ['nrp','nama', 'ips', 'ipk', 'maxsks', 'asdos','angkatan','user_id'];
 }

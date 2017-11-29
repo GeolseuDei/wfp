@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Dosen;
+use App\Mahasiswa;
 use App\User;
 use DB;
 
-class MasterDosenController extends Controller
+class MasterMahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class MasterDosenController extends Controller
      */
     public function index()
     {
-        $dosens = Dosen::all();
-        return view('admin.master_dosen', compact('dosens'));
+        $mhs = Mahasiswa::all();
+        return view('admin.master_mhs', compact('mhs'));
     }
 
     /**
@@ -27,9 +27,9 @@ class MasterDosenController extends Controller
      */
     public function create()
     {
-        $dosens = Dosen::all();
+        $mhs = Mahasiswa::all();
         $users = User::all();
-        return view('admin.input_dosen', compact('dosens', 'users'));
+        return view('admin.input_mhs', compact('mhs', 'users'));
     }
 
     /**
@@ -41,22 +41,27 @@ class MasterDosenController extends Controller
     public function store(Request $request)
     {
         $users = new User([ 
-          'name' => $request->get('namadosen'),
+          'name' => $request->get('namamhs'),
           'email' => $request->get('email'),
           'username' => $request->get('username'),
           'password' => bcrypt($request->get('password')),
-          'status' => 'dosen'
+          'status' => 'mahasiswa'
       ]);
 
-        $dosens = new Dosen([ 
-          'nik' => $request->get('nik'),
-          'nama' => $request->get('namadosen'),
-          'user_id' => $request->get('iddosenbaru'),
+        $mhs = new Mahasiswa([ 
+          'nrp' => $request->get('nrp'),
+          'nama' => $request->get('namamhs'),
+          'ips' => $request->get('ips'),
+          'ipk' => $request->get('ipk'),
+          'maxsks' => $request->get('maxsks'),
+          'asdos' => $request->get('optradio'),
+          'angkatan' => $request->get('angkatan'),
+          'user_id' => $request->get('idmhsbaru'),
       ]);
 
         $users->save();
-        $dosens->save();
-        return redirect('master_dosen');
+        $mhs->save();
+        return redirect('master_mahasiswa');
     }
 
     /**
@@ -78,10 +83,10 @@ class MasterDosenController extends Controller
      */
     public function edit($id)
     {
-        $dosens = Dosen::find($id);
-        $users = User::find($dosens->user_id);
+        $mhs = Mahasiswa::find($id);
+        $users = User::find($mhs->user_id);
         
-        return view('admin.edit_dosen', compact('dosens','users','id'));
+        return view('admin.edit_mhs', compact('mhs','users','id'));
     }
 
     /**
@@ -93,17 +98,23 @@ class MasterDosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dosens = Dosen::find($id);
-        $users = User::find($dosens->user_id);
+        $mhs = Mahasiswa::find($id);
+        $users = User::find($mhs->user_id);
 
-        $dosens->nama = $request->get('namadosen');
+        $mhs->nama = $request->get('namamhs');
+        $mhs->ips = $request->get('ips');
+        $mhs->ipk = $request->get('ipk');
+        $mhs->maxsks = $request->get('maxsks');
+        $mhs->asdos = $request->get('optradio');
+        $mhs->angkatan = $request->get('angkatan');
+
         $users->email = $request->get('email');
         $users->password = bcrypt($request->get('password'));
 
         $users->save();
-        $dosens->save();
+        $mhs->save();
         
-        return redirect('master_dosen');
+        return redirect('master_mahasiswa');
     }
 
     /**
@@ -114,12 +125,12 @@ class MasterDosenController extends Controller
      */
     public function destroy($id)
     {
-        $dosens = Dosen::find($id);
-        $users = User::find($dosens->user_id);
+        $mhs = Mahasiswa::find($id);
+       $users = User::find($mhs->user_id);
 
-        $dosens->delete();
-        $users->delete();
-        
-        return redirect('master_dosen');
-    }
+       $mhs->delete();
+       $users->delete();
+
+       return redirect('master_mahasiswa');
+   }
 }

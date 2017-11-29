@@ -19,14 +19,14 @@
   <div class="menu_section">
     <h3>Menu</h3>
     <ul class="nav side-menu">
-      <li><a href="admin_page"><i class="fa fa-home"></i> Dashboard </a></li>
-      <li><a href="master_dosen"><i class="fa fa-user-md"></i>  Master Dosen </a></li>
-      <li><a href="master_mahasiswa"><i class="fa fa-user"></i>  Master Mahasiswa </a></li>
+      <li><a href="{{url("admin_page")}}"><i class="fa fa-home"></i> Dashboard </a></li>
+      <li><a href="{{url("master_dosen")}}"><i class="fa fa-user-md"></i>  Master Dosen </a></li>
+      <li><a href="{{url("master_mahasiswa")}}"><i class="fa fa-user"></i>  Master Mahasiswa </a></li>
       <li><a><i class="fa fa-calendar"></i> Set Tanggal FPP <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="fpp1">Set Tanggal FPP 1</a></li>
-          <li><a href="fpp2">Set Tanggal FPP 2</a></li>
-          <li><a href="kasus_khusus">Set Tanggal Kasus Khusus</a></li>
+          <li><a href="{{url("fpp1")}}">Set Tanggal FPP 1</a></li>
+          <li><a href="{{url("fpp2")}}">Set Tanggal FPP 2</a></li>
+          <li><a href="{{url("kasus_khusus")}}">Set Tanggal Kasus Khusus</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-edit"></i> Mata Kuliah <span class="fa fa-chevron-down"></span></a>

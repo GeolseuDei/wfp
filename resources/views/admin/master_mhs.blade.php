@@ -1,28 +1,43 @@
 @extends('templates.masteradmin')
 @section('content')
 <div class="container">
-	<table class="table table-striped">
+	<a href="{{ url('input_mhs') }}" class="btn btn-warning">Create</a>
+	<br><br>
+	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th style="text-align: center;">ID</th>
-				<th style="text-align: center;">Title</th>
-				<th style="text-align: center;">Post</th>
+				<th style="text-align: center;">NRP</th>
+				<th style="text-align: center;">Nama</th>
+				<th style="text-align: center;">IPK</th>
+				<th style="text-align: center;">Asdos</th>
+				<th style="text-align: center;">Angkatan</th>
 				<th colspan="2" style="text-align: center;">Action</th>
 			</tr>
 		</thead>
 		<tbody>
-
+			@if($mhs->count()>0)
+			@foreach($mhs as $post)
 			<tr>
-				<td style="text-align: center;">1</td>
-				<td style="text-align: center;">Coba</td>
-				<td style="text-align: center;">coba 123321</td>
-				<td style="text-align: center;"><a href="#" class="btn btn-warning">Edit</a></td>
-				<td style="text-align: center;"><a href="#" class="btn btn-danger">Delete</a></td>
-			</tr>
-			
-		</tbody>
-	</table>
-	<td><a href="#" class="btn btn-warning">Create</a></td>
-        <td>
+				<td style="text-align: center;">{{ $post['nrp'] }}</td>
+				<td style="text-align: center;">{{ $post['nama'] }}</td>
+				<td style="text-align: center;">{{ $post['ipk'] }}</td>
+				@if($post['asdos'] == 1)
+				<td style="text-align: center;">Ya</td>
+				@else
+				<td style="text-align: center;">Tidak</td>
+				@endif
+				<td style="text-align: center;">{{ $post['angkatan'] }}</td>
+				<td style="text-align: center;"><a href="{{ action('MasterMahasiswaController@edit', $post->id) }}" class="btn btn-warning">Edit</a></td>
+				<td style="text-align: center;"><form action="{{action('MasterMahasiswaController@destroy', $post->id)}}" method="post">
+					{{csrf_field()}}
+					<input name="_method" type="hidden" value="DELETE">
+					<button class="btn btn-danger" type="submit" confirm="Delete Data?">Delete</button>
+				</form>
+			</td>
+		</tr>
+		@endforeach
+		@endif
+	</tbody>
+</table>
 </div>
 @endsection
