@@ -35,6 +35,10 @@ Route::get('input_dosen', 'MasterDosenController@create');
 Route::resource('master_mahasiswa', 'MasterMahasiswaController');
 Route::get('input_mhs', 'MasterMahasiswaController@create');
 
+Route::resource('master_kelas', 'MasterKelasController');
+Route::get('input_kelas', 'MasterKelasController@create');
+
+
 // Route::get('master_dosen', function() {
 // 	$user = Auth::user();
 //     if($user['status'] == 'admin')

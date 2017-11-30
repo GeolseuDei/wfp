@@ -26,7 +26,7 @@ class AdminHomeController extends Controller
             $fpp1 = fpp::all()->where('status', 1);
             $fpp2 = fpp::all()->where('status', 2);
             $fpp3 = fpp::all()->where('status', 3);
-            return view('admin.index', compact('fpp1', 'fpp2', 'fpp3'));
+            return view('admin.index', compact('user','fpp1', 'fpp2', 'fpp3'));
         }
         else
         {

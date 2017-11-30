@@ -8,7 +8,8 @@
   </div>
   <div class="profile_info">
     <span>Welcome,</span>
-    <h2>Admin Doe</h2>
+
+    <h2>{{ Auth::user()->name }}</h2>
   </div>
 </div>
 <!-- /menu profile quick info -->
@@ -35,7 +36,7 @@
           <li><a href="{{url("list_matkul")}}">Ubah Data Mata Kuliah</a></li>
         </ul>
       </li>
-      
+      <li><a href="{{url("master_kelas")}}"><i class="fa fa-edit"></i>  Master Kelas </a></li>
     </ul>
   </div>
 </div>

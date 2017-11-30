@@ -20,4 +20,8 @@ class Kelas extends Model
 	{
 		return $this->hasMany('App\MatkulDiambil');
 	}
+
+	protected $fillable = [
+		'hari','jam_masuk', 'jam_keluar', 'kp', 'kapasitas','ruang', 'matkul_id', 'dosen_id'
+	];
 }
