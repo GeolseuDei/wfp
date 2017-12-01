@@ -14,35 +14,35 @@ class DosensTableSeeder extends Seeder
         DB::table('dosens')->insert(
         	[
         	'nik' => 'd001',
-        	'nama' => str_random(10),
+        	'nama' => "Moses",
         	'user_id' => 6
         	]
         );
         DB::table('dosens')->insert(
         	[
         	'nik' => 'd002',
-        	'nama' => str_random(10),
+        	'nama' => "Audi",
         	'user_id' => 7
         	]
         );
         DB::table('dosens')->insert(
         	[
         	'nik' => 'd003',
-        	'nama' => str_random(10),
+        	'nama' => "Erwin",
         	'user_id' => 8
         	]
         );
         DB::table('dosens')->insert(
         	[
         	'nik' => 'd004',
-        	'nama' => str_random(10),
+        	'nama' => "Ma passion",
         	'user_id' => 9
         	]
         );
         DB::table('dosens')->insert(
         	[
         	'nik' => 'd005',
-        	'nama' => str_random(10),
+        	'nama' => "Tommy",
         	'user_id' => 10
         	]
         );

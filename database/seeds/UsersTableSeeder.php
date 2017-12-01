@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     /*MAHASISWA*/
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => 'mahasiswa1',
         	'email' => str_random(10) . "@email.com",
             'username' => 'm001',
         	'password' => bcrypt('123456'),
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => 'mahasiswa2',
         	'email' => str_random(10) . "@email.com",
             'username' => 'm002',
         	'password' => bcrypt('123456'),
@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => 'mahasiswa3',
         	'email' => str_random(10) . "@email.com",
             'username' => 'm003',
         	'password' => bcrypt('123456'),
@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => 'mahasiswa4',
         	'email' => str_random(10) . "@email.com",
             'username' => 'm004',
         	'password' => bcrypt('123456'),
@@ -50,7 +50,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => 'mahasiswa5',
         	'email' => str_random(10) . "@email.com",
             'username' => 'm005',
         	'password' => bcrypt('123456'),
@@ -61,7 +61,7 @@ class UsersTableSeeder extends Seeder
     /*DOSEN*/
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => "Moses",
         	'email' => str_random(10) . "@email.com",
             'username' => 'd001',
         	'password' => bcrypt('123456'),
@@ -70,7 +70,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => "Audi",
         	'email' => str_random(10) . "@email.com",
             'username' => 'd002',
         	'password' => bcrypt('123456'),
@@ -79,7 +79,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => "Erwin",
         	'email' => str_random(10) . "@email.com",
             'username' => 'd003',
         	'password' => bcrypt('123456'),
@@ -88,7 +88,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => "Ma passion",
         	'email' => str_random(10) . "@email.com",
             'username' => 'd004',
         	'password' => bcrypt('123456'),
@@ -97,7 +97,7 @@ class UsersTableSeeder extends Seeder
         );
         DB::table('users')->insert(
         	[
-        	'name' => str_random(8),
+        	'name' => "Tommy",
         	'email' => str_random(10) . "@email.com",
             'username' => 'd005',
         	'password' => bcrypt('123456'),

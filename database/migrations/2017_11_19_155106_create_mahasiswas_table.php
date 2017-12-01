@@ -22,6 +22,7 @@ class CreateMahasiswasTable extends Migration
             $table->integer('maxsks');
             $table->boolean('asdos');
             $table->integer('angkatan');
+            $table->integer('jurusan');
             $table->timestamps();
         });
     }

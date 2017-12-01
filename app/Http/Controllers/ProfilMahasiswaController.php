@@ -3,35 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\fpp;
+use App\Mahasiswa;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
-class AdminHomeController extends Controller
+class ProfilMahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $user = Auth::user();
-        if($user['status'] == 'admin')
-        {
-            $fpp1 = fpp::all()->where('nama', 'fpp1');
-            $fpp2 = fpp::all()->where('nama', 'fpp2');
-            $fpp3 = fpp::all()->where('nama', 'fpp3');
-            return view('admin.index', compact('user','fpp1', 'fpp2', 'fpp3'));
-        }
-        else
-        {
-            return view('noaccess');
-        }
+        $mahasiswas = DB::table('mahasiswas')
+        ->join('users', 'mahasiswas.user_id', '=', 'users.id')
+        ->join('jurusans', 'mahasiswas.jurusan', '=', 'jurusans.id')
+        ->select('mahasiswas.*', 'jurusans.nama as nama_jurusan')
+        ->where('mahasiswas.user_id','=', Auth::user()->id)
+        ->get();
+        return view('mahasiswa.profil', compact('mahasiswas'));
     }
 
     /**

@@ -3,35 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\fpp;
 use Illuminate\Support\Facades\Auth;
+use DB;
 
-class AdminHomeController extends Controller
+class DosenController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $user = Auth::user();
-        if($user['status'] == 'admin')
-        {
-            $fpp1 = fpp::all()->where('nama', 'fpp1');
-            $fpp2 = fpp::all()->where('nama', 'fpp2');
-            $fpp3 = fpp::all()->where('nama', 'fpp3');
-            return view('admin.index', compact('user','fpp1', 'fpp2', 'fpp3'));
-        }
-        else
-        {
-            return view('noaccess');
-        }
+        $dosens = DB::table('matkuls')
+        ->join('kelas','matkuls.id','=','kelas.matkul_id')
+        ->join('dosens','kelas.dosen_id','=','dosens.id')
+        ->join('users','dosens.user_id','=','users.id')
+        ->select('*','matkuls.nama as nama_matkul')
+        ->where('users.id','=', Auth::user()->id)
+        ->get();
+
+        return view('dosen.index', compact('dosens'));
     }
 
     /**

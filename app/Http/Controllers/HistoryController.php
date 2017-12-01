@@ -3,35 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\fpp;
+use DB;
+use App\MatkulDiambil;
 use Illuminate\Support\Facades\Auth;
 
-class AdminHomeController extends Controller
+class HistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $user = Auth::user();
-        if($user['status'] == 'admin')
-        {
-            $fpp1 = fpp::all()->where('nama', 'fpp1');
-            $fpp2 = fpp::all()->where('nama', 'fpp2');
-            $fpp3 = fpp::all()->where('nama', 'fpp3');
-            return view('admin.index', compact('user','fpp1', 'fpp2', 'fpp3'));
-        }
-        else
-        {
-            return view('noaccess');
-        }
+        $matkul_diambils = DB::table('matkul_diambils')
+        ->join('kelas', 'matkul_diambils.kelas_id', '=', 'kelas.id')
+        ->join('matkuls', 'kelas.matkul_id', '=', 'matkuls.id')
+
+        ->join('mahasiswas', 'matkul_diambils.mahasiswa_id', '=', 'mahasiswas.id')
+        ->join('users', 'mahasiswas.user_id', '=', 'users.id')
+
+        ->select('matkuls.*', 'kelas.*', 'matkul_diambils.status','matkul_diambils.id as idmatkuldiambil')
+        ->where('mahasiswas.user_id','=', Auth::user()->id)
+        ->get();
+
+        return view('mahasiswa.history', compact('matkul_diambils'));
     }
 
     /**
@@ -97,6 +93,10 @@ class AdminHomeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $matkul_diambils = MatkulDiambil::find($id);
+
+        $matkul_diambils->delete();
+        
+        return redirect('history');
     }
 }

@@ -19,49 +19,31 @@ Route::get('/', function () {
 Route::get('/home', function () {
 	return view('home');
 });
-Route::resource('admin_page', 'AdminHomeController');
 
-Route::resource('fpp1', 'FPP1Controller');
-Route::resource('fpp2', 'FPP2Controller');
-Route::resource('kasus_khusus', 'KasusKhususController');
-
-Route::resource('edit_matkul', 'MatkulController');
-Route::get('/input_matkul', 'MatkulController@loadJurusanInput');
+Route::resource('admin_page', 'AdminHomeController')->middleware('auth');
+Route::resource('fpp1', 'FPP1Controller')->middleware('auth');
+Route::resource('fpp2', 'FPP2Controller')->middleware('auth');
+Route::resource('kasus_khusus', 'KasusKhususController')->middleware('auth');
+Route::resource('edit_matkul', 'MatkulController')->middleware('auth');
+Route::get('/input_matkul', 'MatkulController@loadJurusanInput')->middleware('auth');
 Route::get('/list_matkul', 'MatkulController@loadJurusanEdit');
+Route::resource('master_dosen', 'MasterDosenController')->middleware('auth');
+Route::get('input_dosen', 'MasterDosenController@create')->middleware('auth');
+Route::resource('master_mahasiswa', 'MasterMahasiswaController')->middleware('auth');
+Route::get('input_mhs', 'MasterMahasiswaController@create')->middleware('auth');
+Route::resource('master_kelas', 'MasterKelasController')->middleware('auth');
+Route::get('input_kelas', 'MasterKelasController@create')->middleware('auth');
 
-Route::resource('master_dosen', 'MasterDosenController');
-Route::get('input_dosen', 'MasterDosenController@create');
+Route::resource('profil_mahasiswa', 'ProfilMahasiswaController')->middleware('auth');
+Route::resource('jadwal_matkul', 'JadwalMatkulController')->middleware('auth');
+Route::resource('daftarkelas', 'DaftarKelasController')->middleware('auth');
+Route::get('carimk', 'DaftarKelasController@getNamaMK')->middleware('auth');
+Route::resource('history', 'HistoryController')->middleware('auth');
 
-Route::resource('master_mahasiswa', 'MasterMahasiswaController');
-Route::get('input_mhs', 'MasterMahasiswaController@create');
+Route::resource('dosen_page', 'DosenController')->middleware('auth');
 
-Route::resource('master_kelas', 'MasterKelasController');
-Route::get('input_kelas', 'MasterKelasController@create');
-
-
-// Route::get('master_dosen', function() {
-// 	$user = Auth::user();
-//     if($user['status'] == 'admin')
-//     {
-//     	return view('admin.master_dosen');
-//     }
-//     else
-//     {
-//     	return view('noaccess');
-//     }
-	
-// })->middleware('auth');
-
-Route::get('dosen_page', function() {
-	return view('dosen.index');
-})->middleware('auth');
 
 Route::get('mahasiswa', function () {
 	return view('mahasiswa.index');
 })->middleware('auth');
 
-Route::get('profil_mahasiswa', function() {
-	return view('mahasiswa.profil');
-})->middleware('auth');
-
-//Route::get('/home', 'HomeController@index')->name('home');

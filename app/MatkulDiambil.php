@@ -15,4 +15,6 @@ class MatkulDiambil extends Model
     {
         return $this->belongsTo('App\Mahasiswa');
     }
+
+    protected $fillable = ['status','kelas_id', 'mahasiswa_id'];
 }
