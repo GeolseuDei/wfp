@@ -16,18 +16,27 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $matkul_diambils = DB::table('matkul_diambils')
-        ->join('kelas', 'matkul_diambils.kelas_id', '=', 'kelas.id')
-        ->join('matkuls', 'kelas.matkul_id', '=', 'matkuls.id')
+        $user = Auth::user();
+        if($user['status'] == 'mahasiswa')
+        {
+            $matkul_diambils = DB::table('matkul_diambils')
+            ->join('kelas', 'matkul_diambils.kelas_id', '=', 'kelas.id')
+            ->join('matkuls', 'kelas.matkul_id', '=', 'matkuls.id')
 
-        ->join('mahasiswas', 'matkul_diambils.mahasiswa_id', '=', 'mahasiswas.id')
-        ->join('users', 'mahasiswas.user_id', '=', 'users.id')
+            ->join('mahasiswas', 'matkul_diambils.mahasiswa_id', '=', 'mahasiswas.id')
+            ->join('users', 'mahasiswas.user_id', '=', 'users.id')
 
-        ->select('matkuls.*', 'kelas.*', 'matkul_diambils.status','matkul_diambils.id as idmatkuldiambil')
-        ->where('mahasiswas.user_id','=', Auth::user()->id)
-        ->get();
+            ->select('matkuls.*', 'kelas.*', 'matkul_diambils.status','matkul_diambils.id as idmatkuldiambil')
+            ->where('mahasiswas.user_id','=', Auth::user()->id)
+            ->get();
 
-        return view('mahasiswa.history', compact('matkul_diambils'));
+            return view('mahasiswa.history', compact('matkul_diambils'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     /**
@@ -93,10 +102,19 @@ class HistoryController extends Controller
      */
     public function destroy($id)
     {
-        $matkul_diambils = MatkulDiambil::find($id);
+        $user = Auth::user();
+        if($user['status'] == 'mahasiswa')
+        {
+            $matkul_diambils = MatkulDiambil::find($id);
 
-        $matkul_diambils->delete();
+            $matkul_diambils->delete();
+            
+            return redirect('history');
+        }
+        else
+        {
+            return view('noaccess');
+        }
         
-        return redirect('history');
     }
 }

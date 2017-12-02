@@ -14,6 +14,9 @@
         @foreach($fpps as $post)
 
         <form id="fpp" action="{{action('KasusKhususController@update', $post['id'])}}" method="POST"  data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+            {{csrf_field()}}
+            {{method_field('put')}}
+
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Tanggal Mulai <span class="required">*</span>
             </label>

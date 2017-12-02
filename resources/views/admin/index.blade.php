@@ -19,11 +19,12 @@
       </div>
       <div class="panel-body"> 
         @if($fpp1->count()>0)
-        @foreach($fpp1 as $post)
-        
-        <h4>Tanggal Mulai : {{$post["tgl_mulai"]}}</h4>
-        <h4>Tanggal Selesai : {{$post["tgl_selesai"]}}</h4> 
-        @endforeach
+        <?php
+        $tglmulai = explode(" ",$fpp1[0]->tgl_mulai);
+        $tglselesai = explode(" ",$fpp1[0]->tgl_selesai);
+        ?>
+        <h4>Tanggal Mulai : {{$tglmulai[0]}}</h4>
+        <h4>Tanggal Selesai : {{$tglselesai[0]}}</h4>
         @else
         <h4>Tanggal Mulai :</h4>
         <h4>Tanggal Selesai :</h4>
@@ -45,46 +46,48 @@
         </h3>
       </div>
       <div class="panel-body">
-        @if($fpp2->count()>0)
-        @foreach($fpp2 as $post)
-        
-        <h4>Tanggal Mulai : {{$post["tgl_mulai"]}}</h4>
-        <h4>Tanggal Selesai : {{$post["tgl_selesai"]}}</h4> 
-        @endforeach
-        @else
-        <h4>Tanggal Mulai :</h4>
-        <h4>Tanggal Selesai :</h4>
-        @endif
-      </div>
+       @if($fpp2->count()>0)
+       <?php
+       $tglmulai = explode(" ",$fpp2[0]->tgl_mulai);
+       $tglselesai = explode(" ",$fpp2[0]->tgl_selesai);
+       ?>
+       <h4>Tanggal Mulai : {{$tglmulai[0]}}</h4>
+       <h4>Tanggal Selesai : {{$tglselesai[0]}}</h4>
+       @else
+       <h4>Tanggal Mulai :</h4>
+       <h4>Tanggal Selesai :</h4>
+       @endif
+     </div>
+   </div>
+ </div>
+
+ <!-- 3 -->
+
+ <div class="col-sm-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Kasus Khusus
+        <a class="anchorjs-link" href="#panel-title">
+          <span class="anchorjs-icon"></span>
+        </a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      @if($fpp3->count()>0)
+      <?php
+      $tglmulai = explode(" ",$fpp3[0]->tgl_mulai);
+      $tglselesai = explode(" ",$fpp3[0]->tgl_selesai);
+      ?>
+      <h4>Tanggal Mulai : {{$tglmulai[0]}}</h4>
+      <h4>Tanggal Selesai : {{$tglselesai[0]}}</h4>
+      @else
+      <h4>Tanggal Mulai :</h4>
+      <h4>Tanggal Selesai :</h4>
+      @endif
     </div>
   </div>
-  
-  <!-- 3 -->
-  
-  <div class="col-sm-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Kasus Khusus
-          <a class="anchorjs-link" href="#panel-title">
-            <span class="anchorjs-icon"></span>
-          </a>
-        </h3>
-      </div>
-      <div class="panel-body">
-        @if($fpp3->count()>0)
-        @foreach($fpp3 as $post)
-        
-        <h4>Tanggal Mulai : {{$post["tgl_mulai"]}}</h4>
-        <h4>Tanggal Selesai : {{$post["tgl_selesai"]}}</h4> 
-        @endforeach
-        @else
-        <h4>Tanggal Mulai :</h4>
-        <h4>Tanggal Selesai :</h4>
-        @endif
-      </div>
-    </div>
-  </div>
-  
+</div>
+
 </div>
 
 
@@ -96,161 +99,33 @@
       <tr>
         <th style="text-align: center;">Kode Matkul</th>
         <th style="text-align: center;">Nama Matkul</th>
+        <th style="text-align: center;">Jurusan</th>
         <th style="text-align: center;">Hari</th>
         <th style="text-align: center;">Jam</th>
         <th style="text-align: center;">SKS</th>
         <th style="text-align: center;">KP</th>
         <th style="text-align: center;">Dosen Pengajar</th>
         <th style="text-align: center;">Kapasitas</th>
-        <th style="text-align: center;">Ruangan</th>
-        <th style="text-align: center;">Action</th>
+        <th style="text-align: center;">Ruangan</th><!-- 
+        <th style="text-align: center;">Action</th> -->
       </tr>
     </thead>
     <tbody>
+      @foreach($matkuls as $post)
       <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td><button id="show" name="show" class="btn btn-primary" style="width: 100%;" data-toggle="modal" data-target="#myModal">Show</button></td>
+        <td>{{$post->kode}}</td>
+        <td>{{$post->nama_matkul}}</td>
+        <td>{{$post->nama_jurusan}}</td>
+        <td>{{$post->hari}}</td>
+        <td>{{$post->jam_masuk .' - '. $post->jam_keluar}}</td>
+        <td>{{$post->sks}}</td>
+        <td>{{$post->kp}}</td>
+        <td>{{$post->nama_dosen}}</td>
+        <td>{{$post->kapasitas}}</td>
+        <td>{{$post->ruang}}</td><!-- 
+        <td><button id="show" name="show" class="btn btn-primary" style="width: 100%;" data-toggle="modal" data-target="#myModal">Show</button></td> -->
       </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td><button id="show" name="show" class="btn btn-primary" style="width: 100%;" data-toggle="modal" data-target="#myModal">Show</button></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td><button id="show" name="show" class="btn btn-primary" style="width: 100%;" data-toggle="modal" data-target="#myModal">Show</button></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td><button id="show" name="show" class="btn btn-primary" style="width: 100%;" data-toggle="modal" data-target="#myModal">Show</button></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td><button id="show" name="show" class="btn btn-primary" style="width: 100%;" data-toggle="modal" data-target="#myModal">Show</button></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>160714044</td>
-        <td>algoritma pemrograman</td>
-        <td>Senin</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>160A4021</td>
-        <td>pemrograman web</td>
-        <td>Rabu</td>
-        <td>08.00 - 09.00</td>
-        <td>3</td>
-        <td>A</td>
-        <td>Siprianus Harry Hoedijono</td>
-        <td>30</td>
-        <td>TC 4.</td>
-        <td></td>
-      </tr>
+      @endforeach
     </tbody>
   </table>
 </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mahasiswa;
 use App\User;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class MasterMahasiswaController extends Controller
 {
@@ -16,8 +17,17 @@ class MasterMahasiswaController extends Controller
      */
     public function index()
     {
-        $mhs = Mahasiswa::all();
-        return view('admin.master_mhs', compact('mhs'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            
+            $mhs = Mahasiswa::all();
+            return view('admin.master_mhs', compact('mhs'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
     }
 
     /**
@@ -27,9 +37,17 @@ class MasterMahasiswaController extends Controller
      */
     public function create()
     {
-        $mhs = Mahasiswa::all();
-        $users = User::all();
-        return view('admin.input_mhs', compact('mhs', 'users'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $mhs = Mahasiswa::all();
+            $users = User::all();
+            return view('admin.input_mhs', compact('mhs', 'users'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
     }
 
     /**
@@ -40,28 +58,37 @@ class MasterMahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $users = new User([ 
-          'name' => $request->get('namamhs'),
-          'email' => $request->get('email'),
-          'username' => $request->get('username'),
-          'password' => bcrypt($request->get('password')),
-          'status' => 'mahasiswa'
-      ]);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $users = new User([ 
+              'name' => $request->get('namamhs'),
+              'email' => $request->get('email'),
+              'username' => $request->get('username'),
+              'password' => bcrypt($request->get('password')),
+              'status' => 'mahasiswa'
+          ]);
 
-        $mhs = new Mahasiswa([ 
-          'nrp' => $request->get('nrp'),
-          'nama' => $request->get('namamhs'),
-          'ips' => $request->get('ips'),
-          'ipk' => $request->get('ipk'),
-          'maxsks' => $request->get('maxsks'),
-          'asdos' => $request->get('optradio'),
-          'angkatan' => $request->get('angkatan'),
-          'user_id' => $request->get('idmhsbaru'),
-      ]);
+            $mhs = new Mahasiswa([ 
+              'nrp' => $request->get('nrp'),
+              'nama' => $request->get('namamhs'),
+              'ips' => $request->get('ips'),
+              'ipk' => $request->get('ipk'),
+              'maxsks' => $request->get('maxsks'),
+              'asdos' => $request->get('optradio'),
+              'angkatan' => $request->get('angkatan'),
+              'user_id' => $request->get('idmhsbaru'),
+          ]);
 
-        $users->save();
-        $mhs->save();
-        return redirect('master_mahasiswa');
+            $users->save();
+            $mhs->save();
+            return redirect('master_mahasiswa');
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     /**
@@ -83,10 +110,18 @@ class MasterMahasiswaController extends Controller
      */
     public function edit($id)
     {
-        $mhs = Mahasiswa::find($id);
-        $users = User::find($mhs->user_id);
-        
-        return view('admin.edit_mhs', compact('mhs','users','id'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $mhs = Mahasiswa::find($id);
+            $users = User::find($mhs->user_id);
+
+            return view('admin.edit_mhs', compact('mhs','users','id'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
     }
 
     /**
@@ -98,23 +133,31 @@ class MasterMahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mhs = Mahasiswa::find($id);
-        $users = User::find($mhs->user_id);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $mhs = Mahasiswa::find($id);
+            $users = User::find($mhs->user_id);
 
-        $mhs->nama = $request->get('namamhs');
-        $mhs->ips = $request->get('ips');
-        $mhs->ipk = $request->get('ipk');
-        $mhs->maxsks = $request->get('maxsks');
-        $mhs->asdos = $request->get('optradio');
-        $mhs->angkatan = $request->get('angkatan');
+            $mhs->nama = $request->get('namamhs');
+            $mhs->ips = $request->get('ips');
+            $mhs->ipk = $request->get('ipk');
+            $mhs->maxsks = $request->get('maxsks');
+            $mhs->asdos = $request->get('optradio');
+            $mhs->angkatan = $request->get('angkatan');
 
-        $users->email = $request->get('email');
-        $users->password = bcrypt($request->get('password'));
+            $users->email = $request->get('email');
+            $users->password = bcrypt($request->get('password'));
 
-        $users->save();
-        $mhs->save();
-        
-        return redirect('master_mahasiswa');
+            $users->save();
+            $mhs->save();
+
+            return redirect('master_mahasiswa');
+        }
+        else
+        {
+            return view('noaccess');
+        }
     }
 
     /**
@@ -125,12 +168,21 @@ class MasterMahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        $mhs = Mahasiswa::find($id);
-       $users = User::find($mhs->user_id);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $mhs = Mahasiswa::find($id);
+            $users = User::find($mhs->user_id);
 
-       $mhs->delete();
-       $users->delete();
+            $mhs->delete();
+            $users->delete();
 
-       return redirect('master_mahasiswa');
-   }
+            return redirect('master_mahasiswa');
+        }
+        else
+        {
+            return view('noaccess');
+        }
+
+    }
 }

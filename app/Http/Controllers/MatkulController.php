@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Matkul;
 use App\jurusan;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class MatkulController extends Controller
 {
@@ -16,24 +17,51 @@ class MatkulController extends Controller
      */
     public function index()
     {
-        $matkuls = Matkul::all();
-        $jurusans = jurusan::all();
-        return view('admin.input_matkul', compact('matkuls','jurusans'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $matkuls = Matkul::all();
+            $jurusans = jurusan::all();
+            return view('admin.input_matkul', compact('matkuls','jurusans'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     public function loadJurusanInput()
     {
-        $jurusans = jurusan::all();
-        return view('admin.input_matkul', compact('jurusans'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $jurusans = jurusan::all();
+            return view('admin.input_matkul', compact('jurusans'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     public function loadJurusanEdit()
     {
-        $matkuls = DB::table('matkuls')
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $matkuls = DB::table('matkuls')
             ->join('jurusans', 'matkuls.id_jurusan', '=', 'jurusans.id')
             ->select('matkuls.*', 'jurusans.nama as nama_jurusan')
             ->get();
-        return view('admin.edit_matkul', compact('matkuls'));
+            return view('admin.edit_matkul', compact('matkuls'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     /**
@@ -54,17 +82,26 @@ class MatkulController extends Controller
      */
     public function store(Request $request)
     {
-        $matkuls = new Matkul([ 
-          'kode' => $request->get('kode_matkul'),
-          'nama' => $request->get('nama_matkul'),
-          'sks' => $request->get('sks'),
-          'id_jurusan' => $request->get('jurusan'),
-          'status' => $request->get('optradio'),
-          'semester' => $request->get('semester'),
-      ]);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $matkuls = new Matkul([ 
+              'kode' => $request->get('kode_matkul'),
+              'nama' => $request->get('nama_matkul'),
+              'sks' => $request->get('sks'),
+              'id_jurusan' => $request->get('jurusan'),
+              'status' => $request->get('optradio'),
+              'semester' => $request->get('semester'),
+          ]);
 
-        $matkuls->save();
-        return redirect('/admin_page');
+            $matkuls->save();
+            return redirect('/admin_page');
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     /**
@@ -86,10 +123,19 @@ class MatkulController extends Controller
      */
     public function edit($id)
     {
-        $matkuls = Matkul::find($id);
-        $jurusans = jurusan::all();
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $matkuls = Matkul::find($id);
+            $jurusans = jurusan::all();
+            
+            return view('admin.update_matkul',compact('jurusans','matkuls','id'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
         
-        return view('admin.update_matkul',compact('jurusans','matkuls','id'));
     }
 
     /**
@@ -101,16 +147,25 @@ class MatkulController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $matkuls = Matkul::find($id);
-        $matkuls->kode = $request->get('kode_matkul');
-        $matkuls->nama = $request->get('nama_matkul');
-        $matkuls->sks = $request->get('sks');
-        $matkuls->id_jurusan = $request->get('jurusan');
-        $matkuls->status = $request->get('optradio');
-        $matkuls->semester = $request->get('semester');
-        $matkuls->save();
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $matkuls = Matkul::find($id);
+            $matkuls->kode = $request->get('kode_matkul');
+            $matkuls->nama = $request->get('nama_matkul');
+            $matkuls->sks = $request->get('sks');
+            $matkuls->id_jurusan = $request->get('jurusan');
+            $matkuls->status = $request->get('optradio');
+            $matkuls->semester = $request->get('semester');
+            $matkuls->save();
+            
+            return redirect('/list_matkul');
+        }
+        else
+        {
+            return view('noaccess');
+        }
         
-        return redirect('/list_matkul');
     }
 
     /**
@@ -121,9 +176,18 @@ class MatkulController extends Controller
      */
     public function destroy($id)
     {
-        $matkuls = Matkul::find($id);
-        $matkuls->delete();
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $matkuls = Matkul::find($id);
+            $matkuls->delete();
+            
+            return redirect('/list_matkul');
+        }
+        else
+        {
+            return view('noaccess');
+        }
         
-        return redirect('/list_matkul');
     }
 }

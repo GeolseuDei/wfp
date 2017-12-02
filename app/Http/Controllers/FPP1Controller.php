@@ -14,7 +14,7 @@ class FPP1Controller extends Controller
      */
     public function index()
     {
-        $fpps = fpp::all()->where('id', 1);
+        $fpps = fpp::all()->where('nama', 'fpp1');
         
         return view('admin.fpp1', compact('fpps'));
     }
@@ -46,7 +46,8 @@ class FPP1Controller extends Controller
           'nama' => 'fpp1',  
           'tgl_mulai' => $request->get('tgl_mulai'),
           'tgl_selesai' => $request->get('tgl_selesai'),
-          'status' => '1'
+          'status' => '0',
+          'semester' => '2018',
         ]);
 
         $fpps->save();

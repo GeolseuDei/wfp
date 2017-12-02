@@ -46,7 +46,8 @@ class FPP2Controller extends Controller
           'nama' => 'fpp2',  
           'tgl_mulai' => $request->get('tgl_mulai'),
           'tgl_selesai' => $request->get('tgl_selesai'),
-          'status' => '2'
+          'status' => '0',
+          'semester' => '2018',
         ]);
 
         $fpps->save();

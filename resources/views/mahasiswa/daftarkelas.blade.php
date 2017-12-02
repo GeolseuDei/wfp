@@ -27,9 +27,7 @@
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						@if(isset($namamk))
 						@if($namamk->count()>0)
-						@foreach($namamk as $post)
-						<h5>{{$post->nama}}</h5>
-						@endforeach
+						<h5>{{$namamk[0]->nama}}</h5>
 						@else
 						<h5>{{'Kode MK tidak ditemukan'}}</h5>
 						@endif
@@ -44,7 +42,6 @@
 			<!-- list kelas -->
 			@if(isset($namamk))
 			@if($namamk->count()>0)
-			@foreach($namamk as $post)
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -95,7 +92,6 @@
 				</div>
 				<hr>
 			</form>
-			@endforeach
 			@endif
 			@endif
 		</div>

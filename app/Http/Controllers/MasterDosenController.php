@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Dosen;
 use App\User;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class MasterDosenController extends Controller
 {
@@ -16,8 +17,17 @@ class MasterDosenController extends Controller
      */
     public function index()
     {
-        $dosens = Dosen::all();
-        return view('admin.master_dosen', compact('dosens'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $dosens = Dosen::all();
+            return view('admin.master_dosen', compact('dosens'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     /**
@@ -27,9 +37,18 @@ class MasterDosenController extends Controller
      */
     public function create()
     {
-        $dosens = Dosen::all();
-        $users = User::all();
-        return view('admin.input_dosen', compact('dosens', 'users'));
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $dosens = Dosen::all();
+            $users = User::all();
+            return view('admin.input_dosen', compact('dosens', 'users'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     /**
@@ -40,23 +59,32 @@ class MasterDosenController extends Controller
      */
     public function store(Request $request)
     {
-        $users = new User([ 
-          'name' => $request->get('namadosen'),
-          'email' => $request->get('email'),
-          'username' => $request->get('username'),
-          'password' => bcrypt($request->get('password')),
-          'status' => 'dosen'
-      ]);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $users = new User([ 
+              'name' => $request->get('namadosen'),
+              'email' => $request->get('email'),
+              'username' => $request->get('username'),
+              'password' => bcrypt($request->get('password')),
+              'status' => 'dosen'
+          ]);
 
-        $dosens = new Dosen([ 
-          'nik' => $request->get('nik'),
-          'nama' => $request->get('namadosen'),
-          'user_id' => $request->get('iddosenbaru'),
-      ]);
+            $dosens = new Dosen([ 
+              'nik' => $request->get('nik'),
+              'nama' => $request->get('namadosen'),
+              'user_id' => $request->get('iddosenbaru'),
+          ]);
 
-        $users->save();
-        $dosens->save();
-        return redirect('master_dosen');
+            $users->save();
+            $dosens->save();
+            return redirect('master_dosen');
+        }
+        else
+        {
+            return view('noaccess');
+        }
+
     }
 
     /**
@@ -78,10 +106,19 @@ class MasterDosenController extends Controller
      */
     public function edit($id)
     {
-        $dosens = Dosen::find($id);
-        $users = User::find($dosens->user_id);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $dosens = Dosen::find($id);
+            $users = User::find($dosens->user_id);
+
+            return view('admin.edit_dosen', compact('dosens','users','id'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
         
-        return view('admin.edit_dosen', compact('dosens','users','id'));
     }
 
     /**
@@ -93,17 +130,26 @@ class MasterDosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dosens = Dosen::find($id);
-        $users = User::find($dosens->user_id);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $dosens = Dosen::find($id);
+            $users = User::find($dosens->user_id);
 
-        $dosens->nama = $request->get('namadosen');
-        $users->email = $request->get('email');
-        $users->password = bcrypt($request->get('password'));
+            $dosens->nama = $request->get('namadosen');
+            $users->email = $request->get('email');
+            $users->password = bcrypt($request->get('password'));
 
-        $users->save();
-        $dosens->save();
+            $users->save();
+            $dosens->save();
+
+            return redirect('master_dosen');
+        }
+        else
+        {
+            return view('noaccess');
+        }
         
-        return redirect('master_dosen');
     }
 
     /**
@@ -114,12 +160,21 @@ class MasterDosenController extends Controller
      */
     public function destroy($id)
     {
-        $dosens = Dosen::find($id);
-        $users = User::find($dosens->user_id);
+        $user = Auth::user();
+        if($user['status'] == 'admin')
+        {
+            $dosens = Dosen::find($id);
+            $users = User::find($dosens->user_id);
 
-        $dosens->delete();
-        $users->delete();
+            $dosens->delete();
+            $users->delete();
+
+            return redirect('master_dosen');
+        }
+        else
+        {
+            return view('noaccess');
+        }
         
-        return redirect('master_dosen');
     }
 }

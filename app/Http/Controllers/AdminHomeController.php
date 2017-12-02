@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\fpp;
+use DB;
 use Illuminate\Support\Facades\Auth;
 
 class AdminHomeController extends Controller
@@ -26,7 +27,15 @@ class AdminHomeController extends Controller
             $fpp1 = fpp::all()->where('nama', 'fpp1');
             $fpp2 = fpp::all()->where('nama', 'fpp2');
             $fpp3 = fpp::all()->where('nama', 'fpp3');
-            return view('admin.index', compact('user','fpp1', 'fpp2', 'fpp3'));
+
+            $matkuls = DB::table('matkuls')
+            ->join('kelas','matkuls.id','=','kelas.matkul_id')
+            ->join('dosens','kelas.dosen_id','=','dosens.id')
+            ->join('jurusans','matkuls.id_jurusan', '=', 'jurusans.id')
+            ->select('*', 'dosens.nama as nama_dosen', 'matkuls.nama as nama_matkul', 'jurusans.nama as nama_jurusan')
+            ->get();
+
+            return view('admin.index', compact('matkuls','fpp1', 'fpp2', 'fpp3'));
         }
         else
         {

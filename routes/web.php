@@ -34,6 +34,7 @@ Route::get('input_mhs', 'MasterMahasiswaController@create')->middleware('auth');
 Route::resource('master_kelas', 'MasterKelasController')->middleware('auth');
 Route::get('input_kelas', 'MasterKelasController@create')->middleware('auth');
 
+Route::resource('mahasiswa', 'MahasiswaController')->middleware('auth');
 Route::resource('profil_mahasiswa', 'ProfilMahasiswaController')->middleware('auth');
 Route::resource('jadwal_matkul', 'JadwalMatkulController')->middleware('auth');
 Route::resource('daftarkelas', 'DaftarKelasController')->middleware('auth');
@@ -42,8 +43,4 @@ Route::resource('history', 'HistoryController')->middleware('auth');
 
 Route::resource('dosen_page', 'DosenController')->middleware('auth');
 
-
-Route::get('mahasiswa', function () {
-	return view('mahasiswa.index');
-})->middleware('auth');
 

@@ -11,6 +11,7 @@
 		</div>
 		<div class="panel-body">
 			<hr>
+			@if($matkul_diambils->count()>0)
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -47,6 +48,9 @@
 				@endforeach
 			</tbody>
 		</table>
+		@else
+		<h2 style="text-align: center;">Tidak ada input</h2>
+		@endif
 		<hr>
 	</div>
 </div>

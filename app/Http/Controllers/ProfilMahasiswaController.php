@@ -16,13 +16,22 @@ class ProfilMahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswas = DB::table('mahasiswas')
-        ->join('users', 'mahasiswas.user_id', '=', 'users.id')
-        ->join('jurusans', 'mahasiswas.jurusan', '=', 'jurusans.id')
-        ->select('mahasiswas.*', 'jurusans.nama as nama_jurusan')
-        ->where('mahasiswas.user_id','=', Auth::user()->id)
-        ->get();
-        return view('mahasiswa.profil', compact('mahasiswas'));
+        $user = Auth::user();
+        if($user['status'] == 'mahasiswa')
+        {
+            $mahasiswas = DB::table('mahasiswas')
+            ->join('users', 'mahasiswas.user_id', '=', 'users.id')
+            ->join('jurusans', 'mahasiswas.jurusan', '=', 'jurusans.id')
+            ->select('mahasiswas.*', 'jurusans.nama as nama_jurusan')
+            ->where('mahasiswas.user_id','=', Auth::user()->id)
+            ->get();
+            return view('mahasiswa.profil', compact('mahasiswas'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
+        
     }
 
     /**

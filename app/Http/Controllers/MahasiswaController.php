@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
+use App\fpp;
 
-class DosenController extends Controller
+class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +16,13 @@ class DosenController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if($user['status'] == 'dosen')
+        if($user['status'] == 'mahasiswa')
         {
-            $dosens = DB::table('matkuls')
-            ->join('kelas','matkuls.id','=','kelas.matkul_id')
-            ->join('dosens','kelas.dosen_id','=','dosens.id')
-            ->join('users','dosens.user_id','=','users.id')
-            ->select('*','matkuls.nama as nama_matkul')
-            ->where('users.id','=', Auth::user()->id)
-            ->get();
+            $fpp1 = fpp::all()->where('nama', 'fpp1');
+            $fpp2 = fpp::all()->where('nama', 'fpp2');
+            $fpp3 = fpp::all()->where('nama', 'fpp3');
 
-            return view('dosen.index', compact('dosens'));
+            return view('mahasiswa.index', compact('fpp1', 'fpp2', 'fpp3'));
         }
         else
         {

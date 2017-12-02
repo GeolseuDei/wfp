@@ -15,24 +15,32 @@ class JadwalMatkulController extends Controller
      */
     public function index()
     {
-        $mahasiswas = DB::table('mahasiswas')
-        ->join('users', 'mahasiswas.user_id', '=', 'users.id')
-        ->join('jurusans', 'mahasiswas.jurusan', '=', 'jurusans.id')
-        ->select('mahasiswas.*', 'jurusans.nama as nama_jurusan')
-        ->where('mahasiswas.user_id','=', Auth::user()->id)
-        ->get();
+        $user = Auth::user();
+        if($user['status'] == 'mahasiswa')
+        {
+            $mahasiswas = DB::table('mahasiswas')
+            ->join('users', 'mahasiswas.user_id', '=', 'users.id')
+            ->join('jurusans', 'mahasiswas.jurusan', '=', 'jurusans.id')
+            ->select('mahasiswas.*', 'jurusans.nama as nama_jurusan')
+            ->where('mahasiswas.user_id','=', Auth::user()->id)
+            ->get();
 
-        $jadwalmatkul = DB::table('matkuls')
-        ->join('kelas', 'kelas.matkul_id', '=', 'matkuls.id')
-        ->join('dosens', 'dosens.id', '=', 'kelas.dosen_id')
-        ->select('matkuls.*', 'kelas.*', 'dosens.nama as nama_dosen')
-        ->where([
-            ['matkuls.id_jurusan','=', $mahasiswas[0]->jurusan],
-            ['matkuls.status','=','1'],
-        ])
-        ->get();
+            $jadwalmatkul = DB::table('matkuls')
+            ->join('kelas', 'kelas.matkul_id', '=', 'matkuls.id')
+            ->join('dosens', 'dosens.id', '=', 'kelas.dosen_id')
+            ->select('matkuls.*', 'kelas.*', 'dosens.nama as nama_dosen')
+            ->where([
+                ['matkuls.id_jurusan','=', $mahasiswas[0]->jurusan],
+                ['matkuls.status','=','1'],
+            ])
+            ->get();
 
-        return view('mahasiswa.jadwalmatkul', compact('jadwalmatkul'));
+            return view('mahasiswa.jadwalmatkul', compact('jadwalmatkul'));
+        }
+        else
+        {
+            return view('noaccess');
+        }
     }
 
     /**
