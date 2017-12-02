@@ -33,7 +33,7 @@ class DaftarKelasController extends Controller
         if($user['status'] == 'mahasiswa')
         {
             $kodemk = $request->post('kodemk');
-
+            
             $mahasiswas = DB::table('mahasiswas')
             ->join('users', 'mahasiswas.user_id', '=', 'users.id')
             ->join('jurusans', 'mahasiswas.jurusan', '=', 'jurusans.id')

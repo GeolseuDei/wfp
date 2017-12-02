@@ -3,14 +3,14 @@
 <div class="container">
 	<div class="panel panel-primary" style="margin-top: 6%">
 		<div class="panel-heading">
-			<h3 class="panel-title">Jadwal Matakuliah
+			<h3 class="panel-title">Jadwal Mata Kuliah
 				<a class="anchorjs-link" href="#panel-title">
 					<span class="anchorjs-icon"></span>
 				</a>
 			</h3>
 		</div>
 		<div class="panel-body">
-			<table class="table table-bordered">
+			<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 				<thead>
 					<tr>
 						<th style="text-align: center;">Kode Mata Kuliah</th>
@@ -42,6 +42,5 @@
 			</table>
 		</div>
 	</div>
-
 </div>
 @endsection

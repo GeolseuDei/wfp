@@ -93,19 +93,27 @@
 
 <!-- TABEL MATA KULIAH  -->
 <div class="x_content">
-  <h3>Daftar Mata Kuliah </h3>
-  <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <th style="text-align: center;">Kode Matkul</th>
-        <th style="text-align: center;">Nama Matkul</th>
-        <th style="text-align: center;">Jurusan</th>
-        <th style="text-align: center;">Hari</th>
-        <th style="text-align: center;">Jam</th>
-        <th style="text-align: center;">SKS</th>
-        <th style="text-align: center;">KP</th>
-        <th style="text-align: center;">Dosen Pengajar</th>
-        <th style="text-align: center;">Kapasitas</th>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Daftar Mata Kuliah
+        <a class="anchorjs-link" href="#panel-title">
+          <span class="anchorjs-icon"></span>
+        </a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th style="text-align: center;">Kode Matkul</th>
+            <th style="text-align: center;">Nama Matkul</th>
+            <th style="text-align: center;">Jurusan</th>
+            <th style="text-align: center;">Hari</th>
+            <th style="text-align: center;">Jam</th>
+            <th style="text-align: center;">SKS</th>
+            <th style="text-align: center;">KP</th>
+            <th style="text-align: center;">Dosen Pengajar</th>
+            <th style="text-align: center;">Kapasitas</th>
         <th style="text-align: center;">Ruangan</th><!-- 
         <th style="text-align: center;">Action</th> -->
       </tr>
@@ -128,6 +136,8 @@
       @endforeach
     </tbody>
   </table>
+</div>
+</div>
 </div>
 
 <!-- /top tiles -->

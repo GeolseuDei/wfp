@@ -14,15 +14,15 @@
 			<form id="form_input_matkul" action="{{url('carimk')}}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
 				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Kode MK <span class="required">*</span>
+					<label class="control-label col-md-4 col-sm-4 col-xs-4" for="last-name">Kode MK <span class="required">*</span>
 					</label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" id="kodemk" name="kodemk" required="required" class="form-control col-md-7 col-xs-12">
+					<div class="col-md-3 col-sm-3 col-xs-3">
+						<input type="text" id="kodemk" name="kodemk" required="required" class="form-control">
 					</div>
 					<button id="btnCari" type="submit" class="btn btn-success">Cari</button>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nama MK <span class="required">:</span>
+					<label class="control-label col-md-4 col-sm-4 col-xs-4" for="last-name">Nama MK <span class="required">:</span>
 					</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						@if(isset($namamk))
@@ -76,18 +76,17 @@
 			<form id="form_input_matkul" action="{{action('DaftarKelasController@store')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 				{{csrf_field()}}
 				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pilih KP <span class="required">*</span>
+					<label class="control-label col-md-4 col-sm-4 col-xs-4" for="last-name">Pilih KP <span class="required">*</span>
 					</label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input type="text" id="kp" name="kp" required="required" class="form-control col-md-7 col-xs-12">
+					<div class="col-md-3 col-sm-3 col-xs-3">
+						<input type="text" id="kp" name="kp" required="required" class="form-control ">
 					</div>
-				</div>
+				
 				@if(isset($idmk))
 				<input type="hidden" value="{{$idmk}}" name="idmk">
 				@endif
-				<div class="form-group">
-					<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-						<button style="float:right" type="submit" class="btn btn-success">Input</button>
+				
+						<button type="submit" class="btn btn-success">Input</button>
 					</div>
 				</div>
 				<hr>
