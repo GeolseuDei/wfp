@@ -9,7 +9,10 @@
       </div>
       <div class="x_content">
         <br />
-
+        @if($errors->any())
+        <h4>{{$errors->first()}}</h4>
+        @endif
+        
         @if($fpps->count()>0)
         @foreach($fpps as $post)
 

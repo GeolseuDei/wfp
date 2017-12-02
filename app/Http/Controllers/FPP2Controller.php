@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\fpp;
 
 class FPP2Controller extends Controller
@@ -41,17 +42,23 @@ class FPP2Controller extends Controller
         // 'tgl_mulai' => 'required|max:20',
         // 'tgl_selesai' => 'required',
         // ]);
+        if((strtotime($request->get('tgl_mulai'))) > (strtotime($request->get('tgl_selesai'))))
+        {
 
-        $fpps = new fpp([
-          'nama' => 'fpp2',  
-          'tgl_mulai' => $request->get('tgl_mulai'),
-          'tgl_selesai' => $request->get('tgl_selesai'),
-          'status' => '0',
-          'semester' => '2018',
-        ]);
+            return Redirect::back()->withErrors(['Tanggal mulai tidak boleh lebih dari tanggal selesai']);
 
-        $fpps->save();
-        return redirect('/admin_page');
+        } else{
+            $fpps = new fpp([
+              'nama' => 'fpp2',  
+              'tgl_mulai' => $request->get('tgl_mulai'),
+              'tgl_selesai' => $request->get('tgl_selesai'),
+              'status' => '0',
+              'semester' => '2018',
+          ]);
+
+            $fpps->save();
+            return redirect('/admin_page');
+        }
     }
 
     /**
@@ -92,11 +99,18 @@ class FPP2Controller extends Controller
         // // 'tgl_mulai' => 'required|max:20',
         // // 'tgl_selesai' => 'required',
          //]);
-        $fpps->tgl_mulai = $request->get('tgl_mulai');
-        $fpps->tgl_selesai = $request->get('tgl_selesai');
-        $fpps->save();
-        
-        return redirect('/admin_page');
+        if((strtotime($request->get('tgl_mulai'))) > (strtotime($request->get('tgl_selesai'))))
+        {
+
+            return Redirect::back()->withErrors(['Tanggal mulai tidak boleh lebih dari tanggal selesai']);
+
+        } else{
+            $fpps->tgl_mulai = $request->get('tgl_mulai');
+            $fpps->tgl_selesai = $request->get('tgl_selesai');
+            $fpps->save();
+            
+            return redirect('/admin_page');
+        }
     }
 
     /**

@@ -16,8 +16,8 @@ class CreateFppsTable extends Migration
         Schema::create('fpps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->dateTime('tgl_mulai');
-            $table->dateTime('tgl_selesai');
+            $table->date('tgl_mulai');
+            $table->date('tgl_selesai');
             $table->boolean('status');
             $table->string('semester');
             $table->timestamps();
