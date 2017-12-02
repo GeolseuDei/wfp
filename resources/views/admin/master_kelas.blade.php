@@ -2,8 +2,8 @@
 @section('content')
 <div class="container">
 	<a href="{{ url('input_kelas') }}" class="btn btn-warning">Create</a>
-	<br><br>
-	<table class="table table-bordered">
+	<br><br><br>
+	<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 		<thead>
 			<tr>
 				<th style="text-align: center;">Mata Kuliah</th>
@@ -13,7 +13,8 @@
 				<th style="text-align: center;">KP</th>
 				<th style="text-align: center;">Ruang</th>
 				<th style="text-align: center;">Kapasitas</th>
-				<th colspan="2" style="text-align: center;">Action</th>
+				<th style="text-align: center;">Edit</th>
+				<th style="text-align: center;">Delete</th>
 			</tr>
 		</thead>
 		<tbody>
