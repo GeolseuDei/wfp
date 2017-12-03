@@ -28,6 +28,7 @@ class KelasTableSeeder extends Seeder
     				'jam_keluar' => '10:40',
     				'kp' => $kp,
     				'kapasitas' => random_int(1, 100),
+                    'jml_mhs' => 0,
     				'ruang' => 'TC 4A',
     				'matkul_id' => random_int(1, 100),
     				'dosen_id' => random_int(1, 5),

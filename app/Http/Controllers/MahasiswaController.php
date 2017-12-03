@@ -20,7 +20,7 @@ class MahasiswaController extends Controller
         {
             $fpp1 = fpp::all()->where('nama', 'fpp1');
             $fpp2 = fpp::all()->where('nama', 'fpp2');
-            $fpp3 = fpp::all()->where('nama', 'fpp3');
+            $fpp3 = fpp::all()->where('nama', 'Kasus Khusus');
 
             return view('mahasiswa.index', compact('fpp1', 'fpp2', 'fpp3'));
         }

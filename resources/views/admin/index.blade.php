@@ -29,7 +29,7 @@
         <h4>Tanggal Mulai :</h4>
         <h4>Tanggal Selesai :</h4>
         @endif
-
+        <a class="btn btn-primary" href="{{action('AdminHomeController@validasi')}}" role="button">Validasi</a>
       </div>
     </div>
   </div>
@@ -57,6 +57,7 @@
        <h4>Tanggal Mulai :</h4>
        <h4>Tanggal Selesai :</h4>
        @endif
+       <a class="btn btn-primary" href="{{action('AdminHomeController@validasi')}}" role="button">Validasi</a>
      </div>
    </div>
  </div>

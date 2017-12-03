@@ -36,6 +36,19 @@
             <input type="date" id="tanggal-selesai" min="2017-10-15" name="tgl_selesai" required="required" class="form-control col-md-7 col-xs-12" value="{{$post['tgl_selesai']}}">
           </div>
         </div>
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">Status <span class="required">*</span>
+          </label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+              @if($post->status == 1)
+              <label class="radio-inline"><input type="radio" name="optradio" value="1" checked="checked">Aktif</label>
+              <label class="radio-inline"><input type="radio" name="optradio" value="0" >Tidak Aktif</label>
+              @else
+              <label class="radio-inline"><input type="radio" name="optradio" value="1" >Aktif</label>
+              <label class="radio-inline"><input type="radio" name="optradio" value="0" checked="checked">Tidak Aktif</label>
+              @endif
+            </div>
+        </div>
 
         <div class="ln_solid"></div>
         <div class="form-group">

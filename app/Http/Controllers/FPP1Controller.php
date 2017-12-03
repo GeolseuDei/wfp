@@ -51,11 +51,11 @@ class FPP1Controller extends Controller
 
 
             $fpps = new fpp([
-              'nama' => 'fpp1',  
+              'nama' => 'fpp1',
               'tgl_mulai' => $request->get('tgl_mulai'),
               'tgl_selesai' => $request->get('tgl_selesai'),
               'status' => '0',
-              'semester' => '2018',
+              'semester' => 'GASAL 2017-2018',
           ]);
 
             $fpps->save();
@@ -107,8 +107,15 @@ class FPP1Controller extends Controller
          return Redirect::back()->withErrors(['Tanggal mulai tidak boleh lebih dari tanggal selesai']);
 
      } else {
+        $status = $request->get('optradio');
+        if($status == 1) //Aktif, hapus status aktif pada fpp lainnya
+        {
+            fpp::where('status', 1)->update(['status' => 0]);
+        }
+        
         $fpps->tgl_mulai = $request->get('tgl_mulai');
         $fpps->tgl_selesai = $request->get('tgl_selesai');
+        $fpps->status = $request->get('optradio');
         $fpps->save();
 
         return redirect('/admin_page');

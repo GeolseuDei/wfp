@@ -22,6 +22,6 @@ class Kelas extends Model
 	}
 
 	protected $fillable = [
-		'hari','jam_masuk', 'jam_keluar', 'kp', 'kapasitas','ruang', 'matkul_id', 'dosen_id'
+		'hari','jam_masuk', 'jam_keluar', 'kp', 'kapasitas','jml_mhs','ruang', 'matkul_id', 'dosen_id'
 	];
 }

@@ -20,6 +20,7 @@ class CreateKelasTable extends Migration
             $table->time('jam_keluar');
             $table->string('kp');
             $table->integer('kapasitas');
+            $table->integer('jml_mhs');
             $table->string('ruang');
             $table->timestamps();
         });

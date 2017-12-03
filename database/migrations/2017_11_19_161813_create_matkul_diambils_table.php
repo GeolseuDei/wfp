@@ -15,7 +15,7 @@ class CreateMatkulDiambilsTable extends Migration
     {
         Schema::create('matkul_diambils', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status');
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\fpp;
 
 class HomeController extends Controller
 {
@@ -11,10 +12,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $fpp1 = fpp::all()->where('nama', 'fpp1');
+        $fpp2 = fpp::all()->where('nama', 'fpp2');
+        $fpp3 = fpp::all()->where('nama', 'Kasus Khusus');
+
+        return view('home', compact('fpp1', 'fpp2', 'fpp3'));
     }
 }

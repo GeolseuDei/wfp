@@ -10,6 +10,9 @@
 			</h3>
 		</div>
 		<div class="panel-body">
+			@if($fpps->count()==0)
+			<h4 class="red">Tidak ada perwalian yang buka saat ini</h4>
+			@else
 			<hr>
 			<form id="form_input_matkul" action="{{url('carimk')}}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
@@ -38,6 +41,7 @@
 				</div>
 				<hr>
 			</form>
+			@endif
 
 			<!-- list kelas -->
 			@if(isset($namamk))

@@ -31,7 +31,11 @@
   <div class="w3-card w3-container" style="min-height:460px">
   <h3>FPP 1</h3><br>
   <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-  <p>25/Jul/2017 00:00:00 s.d. 25/Jul/2017 15:00:00</p>
+  <p>
+    <?php
+      echo $fpp1[0]->tgl_mulai . " s.d. " . $fpp1[0]->tgl_selesai;
+    ?>
+  </p>
   
   </div>
 </div>
@@ -40,7 +44,11 @@
   <div class="w3-card w3-container" style="min-height:460px">
   <h3>FPP 2</h3><br>
   <i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-  <p>27/Jul/2017 20:00:00 s.d. 28/Jul/2017 13:00:00.</p>
+  <p>
+    <?php
+      echo $fpp2[1]->tgl_mulai . " s.d. " . $fpp2[1]->tgl_selesai;
+    ?>
+  </p>
   
   </div>
 </div>
@@ -49,7 +57,11 @@
   <div class="w3-card w3-container" style="min-height:460px">
   <h3>Kasus Khusus </h3><br>
   <i class="fa fa-warning w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
-  <p>31/Jul/2017 06:00:00 s.d. 31/Jul/2017 13:00:00.</p>
+  <p>
+    <?php
+      echo $fpp3[2]->tgl_mulai . " s.d. " . $fpp3[2]->tgl_selesai;
+    ?>
+  </p>
   
   </div>
 </div>

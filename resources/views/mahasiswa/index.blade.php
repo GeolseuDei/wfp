@@ -48,8 +48,8 @@
 
           @if($fpp2->count()>0)
           <?php
-            $tglmulai = explode(" ",$fpp2[0]->tgl_mulai);
-            $tglselesai = explode(" ",$fpp2[0]->tgl_selesai);
+            $tglmulai = explode(" ",$fpp2[1]->tgl_mulai);
+            $tglselesai = explode(" ",$fpp2[1]->tgl_selesai);
           ?>
           <h4>Tanggal Mulai : {{$tglmulai[0]}}</h4>
           <h4>Tanggal Selesai : {{$tglselesai[0]}}</h4>
@@ -77,8 +77,8 @@
 
           @if($fpp3->count()>0)
           <?php
-            $tglmulai = explode(" ",$fpp3[0]->tgl_mulai);
-            $tglselesai = explode(" ",$fpp3[0]->tgl_selesai);
+            $tglmulai = explode(" ",$fpp3[2]->tgl_mulai);
+            $tglselesai = explode(" ",$fpp3[2]->tgl_selesai);
           ?>
           <h4>Tanggal Mulai : {{$tglmulai[0]}}</h4>
           <h4>Tanggal Selesai : {{$tglselesai[0]}}</h4>

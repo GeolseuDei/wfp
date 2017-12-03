@@ -13,12 +13,14 @@
 
 Auth::routes();
 
-Route::get('/', function () {
+/*Route::get('/', function () {
 	return view('home');
 });
 Route::get('/home', function () {
 	return view('home');
-});
+});*/
+Route::resource('/', 'HomeController');
+Route::resource('/home', 'HomeController');
 
 Route::resource('admin_page', 'AdminHomeController')->middleware('auth');
 Route::resource('fpp1', 'FPP1Controller')->middleware('auth');
@@ -33,6 +35,7 @@ Route::resource('master_mahasiswa', 'MasterMahasiswaController')->middleware('au
 Route::get('input_mhs', 'MasterMahasiswaController@create')->middleware('auth');
 Route::resource('master_kelas', 'MasterKelasController')->middleware('auth');
 Route::get('input_kelas', 'MasterKelasController@create')->middleware('auth');
+Route::get('validasi', 'AdminHomeController@validasi')->middleware('auth');
 
 Route::resource('mahasiswa', 'MahasiswaController')->middleware('auth');
 Route::resource('profil_mahasiswa', 'ProfilMahasiswaController')->middleware('auth');

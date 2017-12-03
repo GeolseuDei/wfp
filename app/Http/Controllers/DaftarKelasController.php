@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\MatkulDiambil;
+use App\fpp;
 use Illuminate\Support\Facades\Auth;
 
 class DaftarKelasController extends Controller
@@ -19,7 +20,8 @@ class DaftarKelasController extends Controller
         $user = Auth::user();
         if($user['status'] == 'mahasiswa')
         {
-            return view('mahasiswa.daftarkelas');
+            $fpps = fpp::all()->where('status', 1);
+            return view('mahasiswa.daftarkelas', compact('fpps'));
         }
         else
         {
@@ -32,7 +34,7 @@ class DaftarKelasController extends Controller
         $user = Auth::user();
         if($user['status'] == 'mahasiswa')
         {
-            $kodemk = $request->post('kodemk');
+            $kodemk = strtoupper($request->post('kodemk'));
             
             $mahasiswas = DB::table('mahasiswas')
             ->join('users', 'mahasiswas.user_id', '=', 'users.id')
@@ -59,7 +61,9 @@ class DaftarKelasController extends Controller
                 $idmk = $jadwalmatkul[0]->matkul_id;
             }
 
-            return view('mahasiswa.daftarkelas', compact('jadwalmatkul', 'namamk','idmk'));
+            $fpps = fpp::all()->where('status', 1);
+
+            return view('mahasiswa.daftarkelas', compact('jadwalmatkul', 'namamk','idmk', 'fpps'));
         }
         else
         {
@@ -95,21 +99,48 @@ class DaftarKelasController extends Controller
             ->where('mahasiswas.user_id','=', Auth::user()->id)
             ->get();
 
-            $kp = $request->get('kp');
+            $kp = strtoupper($request->get('kp'));
             $idmk = $request->get('idmk');
 
             $kelas = DB::table('kelas')
             ->join('matkuls', 'kelas.matkul_id', '=', 'matkuls.id')
-            ->select('kelas.id as idkelas')
+            ->select('kelas.id as idkelas', 'kelas.kapasitas as kapasitas', 'kelas.jml_mhs as jml_mhs')
             ->where('kelas.kp','=', $kp)
             ->where('matkuls.id','=', $idmk)
             ->get();
 
-            $matkuldiambil = new MatkulDiambil([
-                'status' => '0',
-                'kelas_id' => $kelas[0]->idkelas,
-                'mahasiswa_id' => $mahasiswas[0]->mhsid,
-            ]);
+            $fppName = DB::table('fpps')
+            ->select('nama')
+            ->where('status' 1)
+            ->get();
+            if($fppName == "Kasus Khusus")
+            {
+                $sisaKapasitas = $item->kapasitas - $item->jml_mhs;
+                if($sisaKapasitas > 0)
+                {
+                    $matkuldiambil = new MatkulDiambil([
+                        'status' => 1,
+                        'kelas_id' => $kelas[0]->idkelas,
+                        'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                    ]);
+                }
+                else
+                {
+                    $matkuldiambil = new MatkulDiambil([
+                        'status' => 2,
+                        'kelas_id' => $kelas[0]->idkelas,
+                        'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                    ]);
+                }
+            }
+            else
+            {
+                $matkuldiambil = new MatkulDiambil([
+                    'status' => 0,
+                    'kelas_id' => $kelas[0]->idkelas,
+                    'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                ]);
+            }
             
 
             $matkuldiambil->save();
