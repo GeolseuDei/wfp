@@ -15,7 +15,7 @@ class KasusKhususController extends Controller
      */
     public function index()
     {
-        $fpps = fpp::all()->where('status', 3);
+        $fpps = fpp::all()->where('nama', 'Kasus Khusus');
         
         return view('admin.kasus_khusus', compact('fpps'));
     }

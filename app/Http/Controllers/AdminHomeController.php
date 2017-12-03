@@ -26,7 +26,7 @@ class AdminHomeController extends Controller
         {
             $fpp1 = fpp::all()->where('nama', 'fpp1');
             $fpp2 = fpp::all()->where('nama', 'fpp2');
-            $fpp3 = fpp::all()->where('nama', 'fpp3');
+            $fpp3 = fpp::all()->where('nama', 'Kasus Khusus');
 
             $matkuls = DB::table('matkuls')
             ->join('kelas','matkuls.id','=','kelas.matkul_id')

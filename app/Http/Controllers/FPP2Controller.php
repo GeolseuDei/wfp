@@ -15,7 +15,7 @@ class FPP2Controller extends Controller
      */
     public function index()
     {
-        $fpps = fpp::all()->where('status', 2);
+        $fpps = fpp::all()->where('nama', 'fpp2');
         
         return view('admin.fpp2', compact('fpps'));
     }
