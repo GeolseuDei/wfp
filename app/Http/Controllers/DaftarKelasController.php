@@ -111,7 +111,7 @@ class DaftarKelasController extends Controller
 
             $fppName = DB::table('fpps')
             ->select('nama')
-            ->where('status' 1)
+            ->where('status', 1)
             ->get();
             if($fppName == "Kasus Khusus")
             {
