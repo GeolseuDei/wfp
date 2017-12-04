@@ -77,6 +77,15 @@
 				</tbody>
 			</table>
 			<hr>
+			<div class="row">
+				<div class="col-md-5">
+					
+				</div>
+				<div class="col-md-4">
+					<h5>asasda</h5>
+				</div>
+			</div>
+			<hr>
 			<form id="form_input_matkul" action="{{action('DaftarKelasController@store')}}" method="POST" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 				{{csrf_field()}}
 				<div class="form-group">
