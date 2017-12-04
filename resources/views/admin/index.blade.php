@@ -115,6 +115,7 @@
             <th style="text-align: center;">KP</th>
             <th style="text-align: center;">Dosen Pengajar</th>
             <th style="text-align: center;">Kapasitas</th>
+            <th style="text-align: center;">Sisa Kapasitas</th>
         <th style="text-align: center;">Ruangan</th><!-- 
         <th style="text-align: center;">Action</th> -->
       </tr>
@@ -131,6 +132,7 @@
         <td>{{$post->kp}}</td>
         <td>{{$post->nama_dosen}}</td>
         <td>{{$post->kapasitas}}</td>
+        <td>{{$post->kapasitas - $post->jml_mhs}}</td>
         <td>{{$post->ruang}}</td><!-- 
         <td><button id="show" name="show" class="btn btn-primary" style="width: 100%;" data-toggle="modal" data-target="#myModal">Show</button></td> -->
       </tr>

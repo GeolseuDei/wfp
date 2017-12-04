@@ -21,6 +21,7 @@
 						<th style="text-align: center;">KP</th>
 						<th style="text-align: center;">Ruang</th>
 						<th style="text-align: center;">Kapasitas</th>
+						<th style="text-align: center;">Sisa Kapasitas</th>
 						<th style="text-align: center;">Dosen</th>
 					</tr>
 				</thead>
@@ -35,6 +36,7 @@
 						<th style="text-align: center;">{{$post->kp}}</th>
 						<th style="text-align: center;">{{$post->ruang}}</th>
 						<th style="text-align: center;">{{$post->kapasitas}}</th>
+						<th style="text-align: center;">{{$post->kapasitas - $post->jml_mhs}}</th>
 						<th style="text-align: center;">{{$post->nama_dosen}}</th>
 					</tr>
 					@endforeach

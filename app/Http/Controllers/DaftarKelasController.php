@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\MatkulDiambil;
 use App\fpp;
+use App\Kelas;
 use Illuminate\Support\Facades\Auth;
 
 class DaftarKelasController extends Controller
@@ -109,7 +110,7 @@ class DaftarKelasController extends Controller
             ->where('matkuls.id','=', $idmk)
             ->get();
 
-            if($kelas->count() == 0)
+            if($kelas->count() == 0) //Jika KP tidak ada
             {
                 $fpps = fpp::all()->where('status', 1);
                 $error = array(1);
@@ -149,11 +150,14 @@ class DaftarKelasController extends Controller
                 ->select('nama')
                 ->where('status', 1)
                 ->get();
-                if($fppName == "Kasus Khusus")
+                if($fppName[0]->nama == "Kasus Khusus")
                 {
-                    $sisaKapasitas = $item->kapasitas - $item->jml_mhs;
+                    $sisaKapasitas = $kelas[0]->kapasitas - $kelas[0]->jml_mhs;
                     if($sisaKapasitas > 0)
                     {
+                        //Tambah jumlah mahasiswa yang masuk di kelas itu
+                        Kelas::where('id', $kelas[0]->idkelas)->update(['jml_mhs' => ($kelas[0]->jml_mhs + 1)]);
+
                         $matkuldiambil = new MatkulDiambil([
                             'status' => 1,
                             'kelas_id' => $kelas[0]->idkelas,
