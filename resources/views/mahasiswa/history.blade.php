@@ -32,28 +32,31 @@
 						<td style="text-align: center;">{{$post->sks}}</td>
 						@if($post->status==0)
 						<td style="text-align: center;">Masih di proses</td>
-						@elseif($post->status==1)
-						<td style="text-align: center;">Diterima</td>
-						@elseif($post->status==2)
-						<td style="text-align: center;">Ditolak</td>
-						@endif
 						<td style="text-align: center;">
 							<form action="{{action('HistoryController@destroy', $post->idmatkuldiambil)}}" method="post">
-							{{csrf_field()}}
-							<input name="_method" type="hidden" value="DELETE">
-							<button class="btn btn-danger" type="submit" confirm="Delete Data?">Delete</button>
-						</form>
-					</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
-		@else
-		<h2 style="text-align: center;">Tidak ada input</h2>
-		@endif
-		<hr>
+								{{csrf_field()}}
+								<input name="_method" type="hidden" value="DELETE">
+								<button class="btn btn-danger" type="submit" confirm="Delete Data?">Delete</button>
+							</form>
+						</td>
+						@elseif($post->status==1)
+						<td style="text-align: center;">Diterima</td>
+						<td style="text-align: center;"></td>
+						@elseif($post->status==2)
+						<td style="text-align: center;">Ditolak</td>
+						<td style="text-align: center;"></td>
+						@endif
+						
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+			@else
+			<h2 style="text-align: center;">Tidak ada input</h2>
+			@endif
+			<hr>
+		</div>
 	</div>
-</div>
 
 </div>
 @endsection
