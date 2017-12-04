@@ -109,43 +109,80 @@ class DaftarKelasController extends Controller
             ->where('matkuls.id','=', $idmk)
             ->get();
 
-            $fppName = DB::table('fpps')
-            ->select('nama')
-            ->where('status', 1)
-            ->get();
-            if($fppName == "Kasus Khusus")
+            if($kelas->count() == 0)
             {
-                $sisaKapasitas = $item->kapasitas - $item->jml_mhs;
-                if($sisaKapasitas > 0)
+                $fpps = fpp::all()->where('status', 1);
+                $error = array(1);
+
+                $kodemk = strtoupper($request->post('kodemk'));
+            
+                $mahasiswas = DB::table('mahasiswas')
+                ->join('users', 'mahasiswas.user_id', '=', 'users.id')
+                ->join('jurusans', 'mahasiswas.jurusan', '=', 'jurusans.id')
+                ->select('mahasiswas.*', 'jurusans.nama as nama_jurusan')
+                ->where('mahasiswas.user_id','=', Auth::user()->id)
+                ->get();
+
+                $jadwalmatkul = DB::table('matkuls')
+                ->join('kelas', 'kelas.matkul_id', '=', 'matkuls.id')
+                ->join('dosens', 'dosens.id', '=', 'kelas.dosen_id')
+                ->select('matkuls.*', 'kelas.*', 'dosens.nama as nama_dosen')
+                ->where([
+                    ['matkuls.id_jurusan','=', $mahasiswas[0]->jurusan],
+                    ['matkuls.status','=','1'],
+                    ['matkuls.kode','=', $kodemk],
+                ])
+                ->get();
+
+                $namamk = $jadwalmatkul->where('kode', '=', $kodemk);
+
+                $idmk = "";
+                if($jadwalmatkul->count()>0){
+                    $idmk = $jadwalmatkul[0]->matkul_id;
+                }
+
+                return view('mahasiswa.daftarkelas', compact('jadwalmatkul', 'namamk','idmk', 'fpps', 'error'));
+            }
+            else
+            {
+                $fppName = DB::table('fpps')
+                ->select('nama')
+                ->where('status', 1)
+                ->get();
+                if($fppName == "Kasus Khusus")
                 {
-                    $matkuldiambil = new MatkulDiambil([
-                        'status' => 1,
-                        'kelas_id' => $kelas[0]->idkelas,
-                        'mahasiswa_id' => $mahasiswas[0]->mhsid,
-                    ]);
+                    $sisaKapasitas = $item->kapasitas - $item->jml_mhs;
+                    if($sisaKapasitas > 0)
+                    {
+                        $matkuldiambil = new MatkulDiambil([
+                            'status' => 1,
+                            'kelas_id' => $kelas[0]->idkelas,
+                            'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                        ]);
+                    }
+                    else
+                    {
+                        $matkuldiambil = new MatkulDiambil([
+                            'status' => 2,
+                            'kelas_id' => $kelas[0]->idkelas,
+                            'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                        ]);
+                    }
                 }
                 else
                 {
                     $matkuldiambil = new MatkulDiambil([
-                        'status' => 2,
+                        'status' => 0,
                         'kelas_id' => $kelas[0]->idkelas,
                         'mahasiswa_id' => $mahasiswas[0]->mhsid,
                     ]);
                 }
-            }
-            else
-            {
-                $matkuldiambil = new MatkulDiambil([
-                    'status' => 0,
-                    'kelas_id' => $kelas[0]->idkelas,
-                    'mahasiswa_id' => $mahasiswas[0]->mhsid,
-                ]);
-            }
-            
+                
 
-            $matkuldiambil->save();
+                $matkuldiambil->save();
 
-            return redirect('history');
+                return redirect('history');
+            }
         }
         else
         {
