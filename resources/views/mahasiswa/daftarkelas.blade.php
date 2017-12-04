@@ -21,7 +21,11 @@
 					</label>
 					<div class="col-md-3 col-sm-3 col-xs-3">
 						@if(isset($jadwalmatkul))
-						<input type="text" id="kodemk" name="kodemk" required="required" class="form-control" value="{{$jadwalmatkul[0]->kode}}">
+							@if($jadwalmatkul->count()>0)
+							<input type="text" id="kodemk" name="kodemk" required="required" class="form-control" value="{{$jadwalmatkul[0]->kode}}">
+							@else
+							<input type="text" id="kodemk" name="kodemk" required="required" class="form-control">
+							@endif
 						@else
 						<input type="text" id="kodemk" name="kodemk" required="required" class="form-control">
 						@endif						
