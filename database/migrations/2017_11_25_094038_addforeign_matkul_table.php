@@ -26,8 +26,8 @@ class AddforeignMatkulTable extends Migration
     public function down()
     {
         Schema::table('matkuls', function (Blueprint $table) {
-            $table->dropForeign(['jurusan']);
-            $table->dropColumn('jurusan');
+            $table->dropForeign(['id_jurusan']);
+            $table->dropColumn('id_jurusan');
         });
     }
 }

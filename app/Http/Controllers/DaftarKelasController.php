@@ -147,7 +147,7 @@ class DaftarKelasController extends Controller
             else
             {
                 $fppName = DB::table('fpps')
-                ->select('nama')
+                ->select('nama', 'id')
                 ->where('status', 1)
                 ->get();
                 if($fppName[0]->nama == "Kasus Khusus")
@@ -162,6 +162,7 @@ class DaftarKelasController extends Controller
                             'status' => 1,
                             'kelas_id' => $kelas[0]->idkelas,
                             'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                            'fpp_id' => $fppName[0]->id
                         ]);
                     }
                     else
@@ -170,6 +171,7 @@ class DaftarKelasController extends Controller
                             'status' => 2,
                             'kelas_id' => $kelas[0]->idkelas,
                             'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                            'fpp_id' => $fppName[0]->id
                         ]);
                     }
                 }
@@ -179,6 +181,7 @@ class DaftarKelasController extends Controller
                         'status' => 0,
                         'kelas_id' => $kelas[0]->idkelas,
                         'mahasiswa_id' => $mahasiswas[0]->mhsid,
+                        'fpp_id' => $fppName[0]->id
                     ]);
                 }
                 

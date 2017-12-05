@@ -19,6 +19,9 @@ class AddforeignMatkulDiambilsTable extends Migration
 
             $table->integer('mahasiswa_id')->unsigned();
             $table->foreign('mahasiswa_id')->references('id')->on('mahasiswas');
+
+            $table->integer('fpp_id')->unsigned();
+            $table->foreign('fpp_id')->references('id')->on('fpps');
         });
     }
 
@@ -35,6 +38,9 @@ class AddforeignMatkulDiambilsTable extends Migration
 
             $table->dropForeign(['mahasiswa_id']);
             $table->dropColumn('mahasiswa_id');
+
+            $table->dropForeign(['fpp_id']);
+            $table->dropColumn('fpp_id');
         });
     }
 }
