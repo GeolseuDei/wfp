@@ -80,6 +80,7 @@ class MasterKelasController extends Controller
               'kp' => $request->get('kp'),
               'kapasitas' => $request->get('kapasitas'),
               'ruang' => $request->get('ruang'),
+              'jml_mhs' => 0,
               'matkul_id' => $request->get('matkul'),
               'dosen_id' => $request->get('dosen'),
           ]);
